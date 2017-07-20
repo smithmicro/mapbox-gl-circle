@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>Circles in GL JS</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--<link rel='shortcut icon' href='Your favicon path goes here' type='image/x-icon'>-->
+    <!-- Mapbox GL-JS CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- Mapbox Assembly -->
+    <link href='https://api.mapbox.com/mapbox-assembly/v0.10.1/assembly.min.css' rel='stylesheet' />
+    <!--<script async defer src='https://api.mapbox.com/mapbox-assembly/v0.10.1/assembly.js'></script>-->
+    <!-- Custom styles -->
+    <!--<link href='main.css' rel='stylesheet' />-->
+</head>
+
+<body>
+    <div class='flex-parent viewport-full relative clip'>
+        <div class='flex-child w-full w300-ml absolute static-ml left bottom'>
+            <div class='flex-parent flex-parent--column viewport-third h-full-ml hmax-full bg-white scroll-auto'>
+                <div class='flex-child flex-child--grow p12 scroll-auto'>
+                    <h3 class='txt-m txt-bold mb6'>Mapbox GL Native Circles</h3>
+                    <p>Click and hold to drag the circle to a new location.</p>
+                    <div id='circleBounds' class='mb3 py12'></div>
+                    <div id='circleCenter' class='mb3 py12'></div>
+                    <div id='circleRadius' class='mb12 py12 col col--12'>
+                        <fieldset>
+                            <label id='circleRadiusLabel' class='txt-m txt-bold mb6'></label>
+                            <input type='range' id='selectRadius' value="3" step="0.1" placeholder="3" min="0.1" max="50" />
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='flex-child flex-child--grow viewport-twothirds viewport-full-ml relative'>
+            <div id='map' class='absolute top bottom right left w-full'></div>
+        </div>
+    </div>
+    <script src='bundle.js'></script>
+</body>
+
+</html>

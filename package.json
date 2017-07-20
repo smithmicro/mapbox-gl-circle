@@ -4,9 +4,9 @@
   "description": "Demo of drawing geofence circles with Mapbox GL JS API",
   "main": "index.js",
   "scripts": {
-    "start": "budo index.js:build/bundle.js --live -- --debug --delay=0",
-    "build": "mkdir -p build && watchify index.js -o build/bundle.js --debug --delay=0 -v",
-    "dist": "mkdir -p dist && time browserify -t [ babelify --presets [ es2015 ] ] index.js | uglifyjs -c -m > dist/bundle.min.js",
+    "start": "budo index.js:bundle.js --live -- --debug --delay=0",
+    "build": "watchify index.js -o bundle.js --debug --delay=0 -v",
+    "dist": "time browserify -t [ babelify --presets [ es2015 ] ] index.js | uglifyjs -c -m > bundle.min.js",
     "test": "eslint ."
   },
   "browserify": {
