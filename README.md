@@ -31,6 +31,14 @@ the circle object and map code is in `index.js`.
 
 ## Changelog
 
+### v. 1.1.0
+
+Updated circle from Mapbox [bl.ocks.org sample](https://bl.ocks.org/ryanbaumann/d286190943d6b4eb70e65a9f76eab5a5/d3cd7cea5feed0dfddbf3705b7936ff560f668d1).
+
+Now provides handles for modifying position/radius. Seems to also do better
+performance wise.
+
+
 ### v. 1.0.0
 
 The initial 1.0.0 release is a modified version of
