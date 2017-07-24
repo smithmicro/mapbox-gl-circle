@@ -24,7 +24,7 @@ the circle object and map code is in `index.js`.
 `npm run build`
 
 
-### Build Distributable Bundle
+### Build Distributable Bundle *CURRENTLY BROKEN*
 
 `npm run dist`
 
