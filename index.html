@@ -20,16 +20,12 @@
         <div class='flex-child w-full w300-ml absolute static-ml left bottom'>
             <div class='flex-parent flex-parent--column viewport-third h-full-ml hmax-full bg-white scroll-auto'>
                 <div class='flex-child flex-child--grow p12 scroll-auto'>
-                    <h3 class='txt-m txt-bold mb6'>Mapbox GL Native Circles</h3>
-                    <p>Click and hold to drag the circle to a new location.</p>
-                    <div id='circleBounds' class='mb3 py12'></div>
-                    <div id='circleCenter' class='mb3 py12'></div>
-                    <div id='circleRadius' class='mb12 py12 col col--12'>
-                        <fieldset>
-                            <label id='circleRadiusLabel' class='txt-m txt-bold mb6'></label>
-                            <input type='range' id='selectRadius' value="3" step="0.1" placeholder="3" min="0.1" max="50" />
-                        </fieldset>
-                    </div>
+                    <h3 class='txt-m txt-bold mb6'>Mapbox GL Circles</h3>
+                    <p class="py6">Create and edit circle objects in GL JS.</p>
+                    <p class="py6">Edit the circle radius or center by click+hold+drag on a control point.</p>
+                    <div id='circleBounds' class='block mb6 py6 txt-m'></div>
+                    <div id='circleCenter' class='block mb6 py6 txt-m'></div>
+                    <div id='circleRadiusLabel' class='block mb6 py6 txt-m'></div>
                 </div>
             </div>
         </div>
