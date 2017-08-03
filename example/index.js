@@ -24,15 +24,9 @@ let map = new mapboxgl.Map({
 // MapboxCircle Setup
 
 // DOM elements
-let boundsEl = document.body.appendChild(document.createElement('div'));
-let centerEl = document.body.appendChild(document.createElement('div'));
-let radiusEl = document.body.appendChild(document.createElement('div'));
+let statusEl = document.body.appendChild(document.createElement('div'));
 
 window.myCircle = new MapboxCircle(map, center, 300, {
     properties: {foo: 'bar'},
-    feedbackEls: {
-        boundsEl: boundsEl,
-        centerEl: centerEl,
-        radiusEl: radiusEl
-    }
+    statusEl: statusEl
 });
