@@ -1,7 +1,13 @@
 # Spherical-Cap "Native Circle" for Mapbox GL JS
 
-This project uses Turf.js to create a `google.maps.Circle` replacement as a Mapbox GL JS compatible GeoJSON object,
-allowing the user to edit circle features (center/radius).
+This project uses Turf.js to create a `google.maps.Circle` replacement, as a Mapbox GL JS compatible GeoJSON object.
+Allowing the developer to define a circle using center coordinates and radius (in meters). And, optionally, enabling
+interactive editing via draggable center/radius handles. Just like the Google original!
+
+
+## Usage
+
+See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 
 ## Development
