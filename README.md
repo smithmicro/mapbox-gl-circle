@@ -1,10 +1,7 @@
-# Create a Native Circle in GL JS
+# Spherical-Cap "Native Circle" for Mapbox GL JS
 
-This demo uses turf.js to create a geojson circle class that works with GL JS to edit
-circle features.
-
-The bulk of the code is in `circle.js`, the geojson circle class.  Interactivity with
-the circle object and map code is in `index.js`.
+This project uses Turf.js to create a `google.maps.Circle` replacement as a Mapbox GL JS compatible GeoJSON object,
+allowing the user to edit circle features (center/radius).
 
 
 ## Development
@@ -30,6 +27,19 @@ the circle object and map code is in `index.js`.
 
 
 ## Changelog
+
+### v. 1.2.0
+
+* Removed dead code and unused methods
+* Restructured library, moving ``circle.js -> lib/main.js`` and ``index.js -> example/index.js``
+* Refactored helper functions from ``example/index.js`` into *MapboxCircle* class, obsoleted *index.html* with
+  DOM updates in *example/index.js*
+* Refactor into *MapboxCircle* into new-style ES6 class
+* Made *MapboxCircle.animate()* and a bunch of properties private, added overridable defaults for fillColor/fillOpacity
+* Updated ESLint config to respect browser/commonjs built-ins and added docs to *MapboxCircle* in order to
+  align with ESLint JSDoc requirements
+* Updated project details in package.json and committed first-draft API documentation
+
 
 ### v. 1.1.0
 

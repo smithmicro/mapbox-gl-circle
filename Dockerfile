@@ -1,12 +1,12 @@
-# To build: docker build -t draw-circle .
-# To run:   docker run -d -p 9966:9966 draw-circle
+# To build: docker build -t mapbox-gl-circle .
+# To run:   docker run -i -p 9966:9966 mapbox-gl-circle
 # To test:  open http://localhost:9966
 
 FROM node:8-alpine
 
-WORKDIR /opt/draw-circle
+WORKDIR /opt/mapbox-gl-circle
 
-COPY package.json index.html index.js circle.js /opt/draw-circle/
+COPY package.json example/index.js lib/main.js /opt/mapbox-gl-circle/
 
 RUN npm install
 
