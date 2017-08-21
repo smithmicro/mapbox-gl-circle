@@ -8,6 +8,7 @@
     "build": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle.js --debug --delay=0 -v",
     "prepublish": "mkdir -p dist && browserify --standalone MapboxCircle -t [ babelify --presets [ es2015 ] ] lib/main.js | uglifyjs -c -m > dist/mapbox-gl-circle.min.js",
     "docs": "documentation build lib/main.js --format=md > API.md",
+    "test": "eslint lib",
     "lint": "eslint lib"
   },
   "browserify": {
