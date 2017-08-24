@@ -4,26 +4,36 @@
 pipeline {
     agent any
     stages {
-        stage('Prepare') {
+        stage('Install Dependencies') {
             steps {
                 checkout scm
                 sh 'npm install'
                 stash includes: 'node_modules/**', name: 'node_modules'
             }
         }
-        stage('ESLint') {
+        stage('Run ESLint') {
             steps {
                 checkout scm
                 unstash 'node_modules'
                 sh 'npm run lint'
             }
         }
-        stage('Build Standalone') {
+        stage('Build Bundle') {
             steps {
                 checkout scm
                 unstash 'node_modules'
+                sh 'npm run build'
+                archiveArtifacts 'dist/mapbox-gl-circle.js'
                 sh 'npm run prepare'
                 archiveArtifacts 'dist/mapbox-gl-circle.min.js'
+            }
+        }
+        stage('Build Docs') {
+            steps {
+                checkout scm
+                unstash 'node_modules'
+                sh 'npm run docs'
+                archiveArtifacts 'API.md'
             }
         }
         stage('Build Docker') {

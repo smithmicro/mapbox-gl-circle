@@ -16,22 +16,27 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 ### Install Dependencies
 
-`npm install`
+    npm install
 
 
 ### Run Locally
 
-`npm start`
+    npm start
 
 
 ### Build Development Bundle 
 
-`npm run build`
+    npm run build
 
 
-### Build Distributable Bundle *CURRENTLY BROKEN*
+### Build Distributable Bundle
 
-`npm run prepare`
+    npm run prepare
+
+
+### Build `API.md` Docs
+
+    npm run docs
 
 
 ## Changelog
