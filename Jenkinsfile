@@ -22,7 +22,7 @@ pipeline {
             steps {
                 checkout scm
                 unstash 'node_modules'
-                sh 'npm run prepublish'
+                sh 'npm run prepare'
                 archiveArtifacts 'dist/mapbox-gl-circle.min.js'
             }
         }

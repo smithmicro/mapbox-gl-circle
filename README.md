@@ -31,7 +31,7 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 ### Build Distributable Bundle *CURRENTLY BROKEN*
 
-`npm run dist`
+`npm run prepare`
 
 
 ## Changelog
