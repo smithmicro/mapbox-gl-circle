@@ -41,6 +41,11 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 ## Changelog
 
+### v. 1.2.1
+
+* Added first-draft Jenkinsfile and start including `package-lock.json`
+
+
 ### v. 1.2.0
 
 * Removed dead code and unused methods
