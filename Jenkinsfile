@@ -22,7 +22,7 @@ pipeline {
                 parallel(
                     'Development Bundle': {
                         unstash 'node_modules'
-                        sh 'npm run build'
+                        sh 'npm run browserify'
                         archiveArtifacts 'dist/mapbox-gl-circle.js'
                     },
                     'Production Bundle': {
