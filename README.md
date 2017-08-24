@@ -26,7 +26,7 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 ### Build Development Bundle 
 
-    npm run build
+    npm run browserify
 
 
 ### Build Distributable Bundle
