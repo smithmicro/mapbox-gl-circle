@@ -5,11 +5,10 @@
   "main": "main.js",
   "scripts": {
     "start": "budo example/index.js --live -- -t brfs ",
-    "watchify": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle.js --debug -v",
-    "browserify": "mkdir -p dist && browserify lib/main.js -o dist/mapbox-gl-circle.js --debug --delay=0 -v",
-    "prepare": "mkdir -p dist && browserify --standalone MapboxCircle -t [ babelify --presets [ es2015 ] ] lib/main.js | uglifyjs -c -m > dist/mapbox-gl-circle.min.js",
+    "watchify": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.js --debug -v",
+    "browserify": "mkdir -p dist && browserify lib/main.js -o dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.js --debug --delay=0 -v",
+    "prepare": "mkdir -p dist && browserify --standalone MapboxCircle -t [ babelify --presets [ es2015 ] ] lib/main.js | uglifyjs -c -m > dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.min.js",
     "docs": "documentation build lib/main.js --format=md > API.md",
-    "test": "eslint lib",
     "lint": "eslint lib"
   },
   "browserify": {
