@@ -5,8 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "budo example/index.js --live -- -t brfs ",
-    "build": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle.js --debug --delay=0 -v",
-    "prepublish": "mkdir -p dist && browserify --standalone MapboxCircle -t [ babelify --presets [ es2015 ] ] lib/main.js | uglifyjs -c -m > dist/mapbox-gl-circle.min.js",
+    "watchify": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle.js --debug -v",
+    "browserify": "mkdir -p dist && browserify lib/main.js -o dist/mapbox-gl-circle.js --debug --delay=0 -v",
+    "prepare": "mkdir -p dist && browserify --standalone MapboxCircle -t [ babelify --presets [ es2015 ] ] lib/main.js | uglifyjs -c -m > dist/mapbox-gl-circle.min.js",
     "docs": "documentation build lib/main.js --format=md > API.md",
     "test": "eslint lib",
     "lint": "eslint lib"
@@ -36,7 +37,23 @@
   },
   "homepage": "https://github.com/mblomdahl/mapbox-gl-circle#readme",
   "optionalDependencies": {
-    "fsevents": "^1.1.2"
+    "core-util-is": "^1.0.2",
+    "debug": "^3.0.0",
+    "fsevents": "^1.1.2",
+    "glob": "^7.1.2",
+    "inflight": "^1.0.6",
+    "inherits": "^2.0.3",
+    "jsonparse": "^1.3.1",
+    "minimatch": "^3.0.4",
+    "once": "^1.4.0",
+    "punycode": "^2.1.0",
+    "readable-stream": "^2.3.3",
+    "string_decoder": "^1.0.3",
+    "through2": "^2.0.3",
+    "util-deprecate": "^1.0.2",
+    "wrappy": "^1.0.2",
+    "xtend": "^4.0.1",
+    "yarn": "^0.27.5"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
