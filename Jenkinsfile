@@ -12,7 +12,7 @@ pipeline {
                     BUILD_VERSION = sh(
                             returnStdout: true,
                             script: 'echo $(node -e "console.log(require(\'./package.json\').version)")'
-                    )
+                    ).replace('\n', '')
                     env.BUILD_VERSION = BUILD_VERSION
                 }
             }
