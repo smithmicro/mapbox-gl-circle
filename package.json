@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-circle",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A google.maps.Circle replacement for Mapbox GL JS API",
   "main": "main.js",
   "scripts": {
