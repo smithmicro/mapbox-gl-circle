@@ -34,14 +34,12 @@ pipeline {
                         unstash 'node_modules'
                         sh 'npm run docs'
                         archiveArtifacts 'API.md'
-
-                    }/*,
+                    },
                     'Docker Image': {
-                        checkout scm
                         sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle .'
                         sh 'docker save docker.smithmicro.io/mapbox-gl-circle | gzip - > mapbox-gl-circle.docker.tar.gz'
                         archiveArtifacts 'mapbox-gl-circle.docker.tar.gz'
-                    }*/
+                    }
                 )
             }
         }

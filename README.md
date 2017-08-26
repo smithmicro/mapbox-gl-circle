@@ -1,6 +1,6 @@
 # Spherical-Cap "Native Circle" for Mapbox GL JS
 
-[![Build Status](https://travis-ci.org/mblomdahl/mapbox-gl-circle.svg?branch=master)](https://travis-ci.org/mblomdahl/mapbox-gl-circle)
+[![Build Status](http://jenkins.smithmicro.io:8080/job/mapbox-gl-circle-multibranch/job/master/lastBuild/badge/icon)](http://jenkins.smithmicro.io:8080/job/mapbox-gl-circle-multibranch/job/master/lastBuild/)
 
 This project uses Turf.js to create a `google.maps.Circle` replacement, as a Mapbox GL JS compatible GeoJSON object.
 Allowing the developer to define a circle using center coordinates and radius (in meters). And, optionally, enabling
@@ -40,6 +40,12 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 
 ## Changelog
+
+### v. 1.2.1
+
+* Added first-draft Jenkinsfile and started including `package-lock.json`
+* Revised `package.json` scripts
+
 
 ### v. 1.2.0
 
