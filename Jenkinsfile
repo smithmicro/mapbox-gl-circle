@@ -21,16 +21,16 @@ pipeline {
                             return [fullBranchName, fullBranchName]
                         }
 
-                        if (fullBranchName ==~ ~/(feature|bugfix)\/[.\d\-\w]+$/) {
+                        if (fullBranchName.matches(/(feature|bugfix)\/[.\d\-\w]+$/)) {
                             return [fullBranchName.split('/')[0],
                                     fullBranchName.split('/')[1].toLowerCase().replaceAll(/[^.\da-z]/, '.')]
                         }
 
-                        if (fullBranchName ==~ ~/hotfix\/\d+(\.\d+){1,2}p\d+$/) {
+                        if (fullBranchName.matches(/hotfix\/\d+(\.\d+){1,2}p\d+$/)) {
                             return fullBranchName.split('/') as List
                         }
 
-                        if (fullBranchName ==~ ~/release\/\d+(\.\d+){1,2}([ab]\d+)?$/) {
+                        if (fullBranchName.matches(/release\/\d+(\.\d+){1,2}([ab]\d+)?$/)) {
                             return fullBranchName.split('/') as List
                         }
 
