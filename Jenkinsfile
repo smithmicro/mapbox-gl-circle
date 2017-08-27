@@ -61,6 +61,7 @@ pipeline {
                     }
 
                     env.BUILD_VERSION = getBuildVersion(BRANCH_NAME as String, BUILD_NUMBER)
+                    env.DOCKER_TAG = env.BUILD_VERSION.replace('+', '_')
                 }
             }
         }
@@ -99,8 +100,8 @@ pipeline {
                 parallel(
                         'Docker Image': {
                             sh 'rm -rf node_modules'
-                            sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$BUILD_VERSION .'
-                            sh '''docker save docker.smithmicro.io/mapbox-gl-circle:$BUILD_VERSION | gzip - \
+                            sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
+                            sh '''docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
 > mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'''
                             archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
                         },
