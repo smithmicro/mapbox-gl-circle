@@ -41,6 +41,12 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 ## Changelog
 
+### v. 1.2.2
+
+* CI updates, now integrates with GitHub and builds reliably (with unique version names) under 
+  http://jenkins.smithmicro.io:8080/job/mapbox-gl-circle-multibranch/
+
+
 ### v. 1.2.1
 
 * Added first-draft Jenkinsfile and started including `package-lock.json`
