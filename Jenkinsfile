@@ -22,10 +22,8 @@ pipeline {
                         }
 
                         if (fullBranchName ==~ ~/(feature|bugfix)\/[.\d\-\w]+$/) {
-                            String _type, _name
-                            (_type, _name) = fullBranchName.split('/') as List
-                            return [_type as String,
-                                    _name.replaceAll(/[^.\da-zA-Z]/, '.').toLowerCase()]
+                            return [fullBranchName.split('/')[0],
+                                    fullBranchName.split('/')[1].toLowerCase().replaceAll(/[^.\da-z]/, '.')]
                         }
 
                         if (fullBranchName ==~ ~/hotfix\/\d+(\.\d+){1,2}p\d+$/) {
@@ -40,22 +38,22 @@ pipeline {
                     }
 
                     def getBuildVersion = { String fullBranchName, buildNumber ->
-                        String branchType, branchName, projectVersion = getProjectVersion()
-                        (branchType, branchName) = getBranchTypeAndName(fullBranchName)
+                        String projectVersion = getProjectVersion()
+                        def branchTypeAndName = getBranchTypeAndName(fullBranchName)
 
-                        switch (branchType) {
+                        switch (branchTypeAndName[0]) {
                             case 'master':
                                 return projectVersion
                             case 'hotfix':
-                                return "${branchName}-rc.${buildNumber}"
+                                return "${branchTypeAndName[1]}-rc.${buildNumber}"
                             case 'develop':
                                 return "${projectVersion}+develop.dev${buildNumber}"
                             case 'feature':
-                                return "${projectVersion}+feature.${branchName}.dev${buildNumber}"
+                                return "${projectVersion}+feature.${branchTypeAndName[1]}.dev${buildNumber}"
                             case 'bugfix':
-                                return "${projectVersion}+bugfix.${branchName}.dev${buildNumber}"
+                                return "${projectVersion}+bugfix.${branchTypeAndName[1]}.dev${buildNumber}"
                             case 'release':
-                                assert branchName == projectVersion
+                                assert branchTypeAndName[1] == projectVersion
                                 return "${projectVersion}-rc.${buildNumber}"
                             default:
                                 throw new AssertionError("Oops, Mats messed up! :(")
