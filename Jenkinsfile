@@ -1,7 +1,5 @@
 #!/usr/bin/env groovy
 
-def BUILD_VERSION = null
-
 //noinspection GroovyAssignabilityCheck
 pipeline {
     agent any
@@ -9,11 +7,10 @@ pipeline {
         stage('Set BUILD_VERSION') {
             steps {
                 script {
-                    BUILD_VERSION = sh(
+                    env.BUILD_VERSION = sh(
                             returnStdout: true,
                             script: 'echo $(node -e "console.log(require(\'./package.json\').version)")'
                     ).replace('\n', '')
-                    env.BUILD_VERSION = BUILD_VERSION
                 }
             }
         }
@@ -31,18 +28,18 @@ pipeline {
             steps {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
-                    'Development Bundle': {
-                        sh 'npm run browserify'
-                        archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.js"
-                    },
-                    'Production Bundle': {
-                        sh 'npm run prepare'
-                        archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.min.js"
-                    },
-                    'API Docs': {
-                        sh 'npm run docs'
-                        archiveArtifacts 'API.md'
-                    }
+                        'Development Bundle': {
+                            sh 'npm run browserify'
+                            archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.js"
+                        },
+                        'Production Bundle': {
+                            sh 'npm run prepare'
+                            archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.min.js"
+                        },
+                        'API Docs': {
+                            sh 'npm run docs'
+                            archiveArtifacts 'API.md'
+                        }
                 )
             }
         }
@@ -50,15 +47,16 @@ pipeline {
             steps {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
-                    'Docker Image': {
-                        sh 'rm -rf node_modules'
-                        sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$BUILD_VERSION .'
-                        sh 'docker save docker.smithmicro.io/mapbox-gl-circle:$BUILD_VERSION | gzip - > mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'
-                        archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
-                    },
-                    'NPM Package': {
-                        sh 'echo "placeholder! for $BUILD_VERSION"'
-                    }
+                        'Docker Image': {
+                            sh 'rm -rf node_modules'
+                            sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$BUILD_VERSION .'
+                            sh '''docker save docker.smithmicro.io/mapbox-gl-circle:$BUILD_VERSION | gzip - \
+> mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'''
+                            archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
+                        },
+                        'NPM Package': {
+                            sh 'echo "placeholder! for $BUILD_VERSION"'
+                        }
                 )
             }
         }
