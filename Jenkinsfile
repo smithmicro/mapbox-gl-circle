@@ -4,15 +4,23 @@
 pipeline {
     agent any
     stages {
+        stage('Set BUILD_VERSION') {
+            steps {
+                script {
+                    env.BUILD_VERSION = sh(
+                            returnStdout: true,
+                            script: 'echo $(node -e "console.log(require(\'./package.json\').version)")'
+                    ).replace('\n', '')
+                }
+            }
+        }
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
-                stash includes: 'node_modules/**', name: 'node_modules'
             }
         }
         stage('Run ESLint') {
             steps {
-                unstash 'node_modules'
                 sh 'npm run lint'
             }
         }
@@ -20,26 +28,35 @@ pipeline {
             steps {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
-                    'Development Bundle': {
-                        unstash 'node_modules'
-                        sh 'npm run browserify'
-                        archiveArtifacts 'dist/mapbox-gl-circle.js'
-                    },
-                    'Production Bundle': {
-                        unstash 'node_modules'
-                        sh 'npm run prepare'
-                        archiveArtifacts 'dist/mapbox-gl-circle.min.js'
-                    },
-                    'API Docs': {
-                        unstash 'node_modules'
-                        sh 'npm run docs'
-                        archiveArtifacts 'API.md'
-                    },
-                    'Docker Image': {
-                        sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle .'
-                        sh 'docker save docker.smithmicro.io/mapbox-gl-circle | gzip - > mapbox-gl-circle.docker.tar.gz'
-                        archiveArtifacts 'mapbox-gl-circle.docker.tar.gz'
-                    }
+                        'Development Bundle': {
+                            sh 'npm run browserify'
+                            archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.js"
+                        },
+                        'Production Bundle': {
+                            sh 'npm run prepare'
+                            archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.min.js"
+                        },
+                        'API Docs': {
+                            sh 'npm run docs'
+                            archiveArtifacts 'API.md'
+                        }
+                )
+            }
+        }
+        stage('Publish') {
+            steps {
+                //noinspection GroovyAssignabilityCheck
+                parallel(
+                        'Docker Image': {
+                            sh 'rm -rf node_modules'
+                            sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$BUILD_VERSION .'
+                            sh '''docker save docker.smithmicro.io/mapbox-gl-circle:$BUILD_VERSION | gzip - \
+> mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'''
+                            archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
+                        },
+                        'NPM Package': {
+                            sh 'echo "placeholder! for $BUILD_VERSION"'
+                        }
                 )
             }
         }
