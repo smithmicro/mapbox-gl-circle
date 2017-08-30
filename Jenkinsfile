@@ -95,18 +95,25 @@ pipeline {
             }
         }
         stage('Publish') {
+            environment {
+                NPM_TOKEN = credentials('mblomdahl_npm')
+                DOCKER_LOGIN = credentials('docker_smithmicro_io')
+            }
             steps {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
                         'Docker Image': {
                             sh 'rm -rf node_modules'
+                            sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
                             sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
                             sh '''docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
 > mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'''
                             archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
+                            //sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG'
                         },
                         'NPM Package': {
-                            sh 'echo "placeholder! for $BUILD_VERSION"'
+                            sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc'
+                            sh 'echo $(npm who)'
                         }
                 )
             }
