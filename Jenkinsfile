@@ -4,7 +4,7 @@
 pipeline {
     agent any
     stages {
-        stage('Set BUILD_VERSION') {
+        stage('Set Build Variables') {
             steps {
                 script {
 
@@ -85,6 +85,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
+                stash 'pre_install_git_checkout'
                 sh 'npm install'
             }
         }
@@ -124,18 +125,21 @@ pipeline {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
                         'Docker Image': {
-                            sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
-                            retry(5) {  // Sometimes fails (`node_modules` modifications while sending build ctx)
+                            ws('_docker-build') {
+                                unstash 'pre_install_git_checkout'
+                                sh 'echo $(pwd)'
+                                sh 'ls -lFah'
+                                sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
                                 sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
-                            }
-                            sh '''docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
-> mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'''
-                            archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
+                                sh 'docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
+> mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'
+                                archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
 
-                            sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG'
-                            sh '''docker tag docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG \
-docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'''
-                            sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
+                                sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG'
+                                sh 'docker tag docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG \
+docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
+                                sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
+                            }
                         },
                         'NPM Package': {
                             sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc'
