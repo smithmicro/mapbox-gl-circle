@@ -4,14 +4,14 @@
 pipeline {
     agent any
     stages {
-        stage('Set BUILD_VERSION') {
+        stage('Set Build Variables') {
             steps {
                 script {
 
                     def getProjectVersion = { ->
                         return sh(
-                                returnStdout: true,
-                                script: 'echo $(node -e "console.log(require(\'./package.json\').version)")'
+                            returnStdout: true,
+                            script: 'echo $(node -e "console.log(require(\'./package.json\').version)")'
                         ).replace('\n', '')
                     }
 
@@ -60,13 +60,32 @@ pipeline {
                         }
                     }
 
+                    def getNpmTag = { String fullBranchName ->
+                        switch (getBranchTypeAndName(fullBranchName)[0]) {
+                            case 'master':
+                                return 'latest'
+                            case 'release':
+                                return 'next'
+                            default:
+                                return ''
+                        }
+                    }
+
                     env.BUILD_VERSION = getBuildVersion(BRANCH_NAME as String, BUILD_NUMBER)
+                    env.NPM_TAG = getNpmTag(BRANCH_NAME as String)
                     env.DOCKER_TAG = env.BUILD_VERSION.replace('+', '_')
+                    env.DOCKER_TAG_ALIAS = env.NPM_TAG
+                    env.BUILD_TYPE = env.NPM_TAG ? env.NPM_TAG : 'develop'  // latest, next or develop
+
+                    if (env.BUILD_TYPE == 'next') {
+                        sh 'npm version $BUILD_VERSION'
+                    }
                 }
             }
         }
         stage('Install Dependencies') {
             steps {
+                stash 'pre_install_git_checkout'
                 sh 'npm install'
             }
         }
@@ -79,37 +98,71 @@ pipeline {
             steps {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
-                        'Development Bundle': {
-                            sh 'npm run browserify'
-                            archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.js"
-                        },
-                        'Production Bundle': {
-                            sh 'npm run prepare'
-                            archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.min.js"
-                        },
-                        'API Docs': {
-                            sh 'npm run docs'
-                            archiveArtifacts 'API.md'
-                        }
+                    'Development Bundle': {
+                        sh 'npm run browserify'
+                        archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.js"
+                    },
+                    'Production Bundle': {
+                        sh 'npm run prepare'
+                        archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.min.js"
+                    },
+                    'API Docs': {
+                        sh 'npm run docs'
+                        archiveArtifacts 'API.md'
+                    }
                 )
             }
         }
         stage('Publish') {
+            when {
+                expression { env.BUILD_TYPE in ['next', 'latest'] }
+            }
+            environment {
+                NPM_TOKEN = credentials('mblomdahl_npm')
+                DOCKER_LOGIN = credentials('docker_smithmicro_io')
+            }
             steps {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
-                        'Docker Image': {
-                            sh 'rm -rf node_modules'
+                    'Docker Image': {
+                        dir('_docker-build') {
+                            unstash 'pre_install_git_checkout'
+                            sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
                             sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
-                            sh '''docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
-> mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'''
+                            sh 'docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
+> mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'
                             archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
-                        },
-                        'NPM Package': {
-                            sh 'echo "placeholder! for $BUILD_VERSION"'
+
+                            sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG'
+                            sh 'docker tag docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG \
+docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
+                            sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
+                            deleteDir()
                         }
+                    },
+                    'NPM Package': {
+                        sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc'
+                        sh 'npm publish --tag $NPM_TAG .'
+                    }
                 )
             }
+        }
+    }
+    post {
+        always {
+            deleteDir()
+        }
+        success {
+            echo 'Build succeeded!'
+        }
+        unstable {
+            echo 'Build unstable :/'
+        }
+        failure {
+            echo 'Build failed :('
+        }
+        changed {
+            echo 'Things are different...'
         }
     }
 }

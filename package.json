@@ -1,8 +1,14 @@
 {
   "name": "mapbox-gl-circle",
-  "version": "1.2.2",
+  "version": "1.2.3",
+  "author": "Smith Micro Software, Inc.",
+  "license": "ISC",
   "description": "A google.maps.Circle replacement for Mapbox GL JS API",
-  "main": "main.js",
+  "homepage": "https://github.com/mblomdahl/mapbox-gl-circle#readme",
+  "bugs": {
+    "url": "https://github.com/mblomdahl/mapbox-gl-circle/issues"
+  },
+  "main": "lib/main.js",
   "scripts": {
     "start": "budo example/index.js --live -- -t brfs ",
     "watchify": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.js --debug -v",
@@ -17,24 +23,28 @@
     ]
   },
   "files": [
-    "lib",
-    "dist"
+    "lib/",
+    "example/",
+    "dist/"
   ],
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:mblomdahl/mapbox-gl-circle.git"
   },
   "keywords": [
-    "geocoder",
+    "mapbox",
+    "circle",
     "osm",
     "gl"
   ],
-  "author": "Smith Micro Software, Inc.",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mblomdahl/mapbox-gl-circle/issues"
+  "engines": {
+    "node": ">=7.6.0",
+    "npm": ">=5.3.0"
   },
-  "homepage": "https://github.com/mblomdahl/mapbox-gl-circle#readme",
   "optionalDependencies": {
     "core-util-is": "^1.0.2",
     "debug": "^3.0.0",
