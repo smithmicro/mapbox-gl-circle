@@ -76,6 +76,10 @@ pipeline {
                     env.DOCKER_TAG = env.BUILD_VERSION.replace('+', '_')
                     env.DOCKER_TAG_ALIAS = env.NPM_TAG
                     env.BUILD_TYPE = env.NPM_TAG ? env.NPM_TAG : 'develop'  // latest, next or develop
+
+                    if (env.BUILD_TYPE == 'next') {
+                        sh 'npm version $BUILD_VERSION'
+                    }
                 }
             }
         }
@@ -134,7 +138,6 @@ docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'''
                         },
                         'NPM Package': {
                             sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc'
-                            sh 'npm version $BUILD_VERSION'
                             sh 'npm publish --tag $NPM_TAG .'
                         }
                 )
