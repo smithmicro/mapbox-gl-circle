@@ -127,8 +127,6 @@ pipeline {
                     'Docker Image': {
                         dir('_docker-build') {
                             unstash 'pre_install_git_checkout'
-                            sh 'echo $(pwd)'
-                            sh 'ls -lFah'
                             sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
                             sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
                             sh 'docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
@@ -139,6 +137,7 @@ pipeline {
                             sh 'docker tag docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG \
 docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
                             sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
+                            deleteDir()
                         }
                     },
                     'NPM Package': {
