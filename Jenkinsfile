@@ -10,8 +10,8 @@ pipeline {
 
                     def getProjectVersion = { ->
                         return sh(
-                                returnStdout: true,
-                                script: 'echo $(node -e "console.log(require(\'./package.json\').version)")'
+                            returnStdout: true,
+                            script: 'echo $(node -e "console.log(require(\'./package.json\').version)")'
                         ).replace('\n', '')
                     }
 
@@ -97,20 +97,26 @@ pipeline {
         stage('Build Artifacts') {
             steps {
                 //noinspection GroovyAssignabilityCheck
-                parallel(
-                        'Development Bundle': {
+                parallel {
+                    stage('Development Bundle') {
+                        steps {
                             sh 'npm run browserify'
                             archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.js"
-                        },
-                        'Production Bundle': {
+                        }
+                    }
+                    stage('Production Bundle') {
+                        steps {
                             sh 'npm run prepare'
                             archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.min.js"
-                        },
-                        'API Docs': {
+                        }
+                    }
+                    stage('API Docs') {
+                        steps {
                             sh 'npm run docs'
                             archiveArtifacts 'API.md'
                         }
-                )
+                    }
+                }
             }
         }
         stage('Publish') {
@@ -121,32 +127,52 @@ pipeline {
                 NPM_TOKEN = credentials('mblomdahl_npm')
                 DOCKER_LOGIN = credentials('docker_smithmicro_io')
             }
-            steps {
-                //noinspection GroovyAssignabilityCheck
-                parallel(
-                        'Docker Image': {
-                            ws('_docker-build') {
-                                unstash 'pre_install_git_checkout'
-                                sh 'echo $(pwd)'
-                                sh 'ls -lFah'
-                                sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
-                                sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
-                                sh 'docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
+            //noinspection GroovyAssignabilityCheck
+            parallel {
+                stage('Docker Image') {
+                    steps {
+                        dir '_docker-build' {
+                            unstash 'pre_install_git_checkout'
+                            sh 'echo $(pwd)'
+                            sh 'ls -lFah'
+                            sh 'rm -rf node_modules'
+                            sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
+                            sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
+                            sh 'docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
 > mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'
-                                archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
+                            archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
 
-                                sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG'
-                                sh 'docker tag docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG \
+                            sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG'
+                            sh 'docker tag docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG \
 docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
-                                sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
-                            }
-                        },
-                        'NPM Package': {
-                            sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc'
-                            sh 'npm publish --tag $NPM_TAG .'
+                            sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
                         }
-                )
+                    }
+                }
+                stage('NPM Package') {
+                    steps {
+                        sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc'
+                        sh 'npm publish --tag $NPM_TAG .'
+                    }
+                }
             }
+        }
+    }
+    post {
+        always {
+            deleteDir()
+        }
+        success {
+            echo 'Build succeeded!'
+        }
+        unstable {
+            echo 'Build unstable :/'
+        }
+        failure {
+            echo 'Build failed :('
+        }
+        changed {
+            echo 'Things are different...'
         }
     }
 }
