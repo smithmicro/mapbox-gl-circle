@@ -125,7 +125,7 @@ pipeline {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
                     'Docker Image': {
-                        dir '_docker-build' {
+                        dir('_docker-build') {
                             unstash 'pre_install_git_checkout'
                             sh 'echo $(pwd)'
                             sh 'ls -lFah'
