@@ -44,7 +44,7 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 ### v. 1.2.3
 
-* NPM publishing of releases as `@latest` and pre-releases as `@next` to https://www.npmjs.com/package/mapbox-gl-circle
+* Publishing releases as `@latest` and pre-releases as `@next` to https://www.npmjs.com/package/mapbox-gl-circle
 
 * CI update for Docker image, now publishes releases and pre-releases to SMSI internal Docker registry,
   http://docker.smithmicro.io/repository/mapbox-gl-circle
