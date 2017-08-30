@@ -124,9 +124,10 @@ pipeline {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
                         'Docker Image': {
-                            sh 'rm -rf node_modules'
                             sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
-                            sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
+                            retry(5) {  // Sometimes fails (`node_modules` modifications while sending build ctx)
+                                sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
+                            }
                             sh '''docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
 > mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'''
                             archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
