@@ -29,6 +29,7 @@ const statusEl = document.body.appendChild(document.createElement('div'));
 const editable = {
     strokeColor: '#29AB87',
     strokeWeight: 1,
+    strokeOpacity: 0.85,
     fillColor: '#29AB87',
     fillOpacity: 0.2
 };
@@ -46,6 +47,7 @@ window.editableCircle = new MapboxCircle([-75.341, 39.986], 300, {
     editable: true,
     strokeColor: editable.strokeColor,
     strokeWeight: editable.strokeWeight,
+    strokeOpacity: editable.strokeOpacity,
     fillColor: editable.fillColor,
     fillOpacity: editable.fillOpacity,
     statusEl: statusEl
