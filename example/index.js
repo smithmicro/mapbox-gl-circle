@@ -3,7 +3,7 @@
 const mapboxgl = require('mapbox-gl');
 const MapboxCircle = require('../lib/main.js');
 
-let mapDiv = document.body.appendChild(document.createElement('div'));
+const mapDiv = document.body.appendChild(document.createElement('div'));
 mapDiv.style.position = 'absolute';
 mapDiv.style.top = '32px';
 mapDiv.style.right = 0;
@@ -23,31 +23,31 @@ const map = new mapboxgl.Map({
 
 // MapboxCircle Setup
 
-// DOM elements
-const statusEl = document.body.appendChild(document.createElement('div'));
-
-const editable = {
+const editableOpts = {
+    editable: true,
     strokeColor: '#29AB87',
     strokeWeight: 1,
+    strokeOpacity: 0.85,
     fillColor: '#29AB87',
-    fillOpacity: 0.2
+    fillOpacity: 0.2,
+    statusEl: document.body.appendChild(document.createElement('div'))
 };
 
-/*
-const nonEditable = {
-    strokeColor: '#000000',
+const nonEditableOpts = {
     strokeWeight: 0,
     fillColor: '#000000',
     fillOpacity: 0.2
 };
-*/
 
-window.editableCircle = new MapboxCircle([-75.341, 39.986], 300, {
-    editable: true,
-    strokeColor: editable.strokeColor,
-    strokeWeight: editable.strokeWeight,
-    fillColor: editable.fillColor,
-    fillOpacity: editable.fillOpacity,
-    statusEl: statusEl
-}).addTo(map);
+window.editableCircle1 = new MapboxCircle([-75.341, 39.986], 350, editableOpts).addTo(map);
 
+window.plainCircle1 = new MapboxCircle([-75.345, 39.982], 250, nonEditableOpts).addTo(map);
+
+window.plainCircle2 = new MapboxCircle([-75.344, 39.983], 300, nonEditableOpts).addTo(map);
+
+window.editableCircle2 = new MapboxCircle([-75.349, 39.984], 300, editableOpts).addTo(map);
+window.editableCircle4 = new MapboxCircle([-75.348, 39.989], 250, editableOpts).addTo(map);
+window.editableCircle5 = new MapboxCircle([-75.340, 39.980], 225, editableOpts).addTo(map);
+
+window.plainCircle3 = new MapboxCircle([-75.345, 39.983], 150, nonEditableOpts).addTo(map);
+window.plainCircle4 = new MapboxCircle([-75.352, 39.983], 200, nonEditableOpts).addTo(map);
