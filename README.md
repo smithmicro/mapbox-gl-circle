@@ -42,6 +42,11 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 ## Changelog
 
+### v. 1.2.4
+
+* Bug fixes; passing `editable: false` when creating a circle is now respected, along with any styling options
+
+
 ### v. 1.2.3
 
 * Publishing releases as `@latest` and pre-releases as `@next` to https://www.npmjs.com/package/mapbox-gl-circle
