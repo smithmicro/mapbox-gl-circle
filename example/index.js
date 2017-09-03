@@ -39,15 +39,24 @@ const nonEditableOpts = {
     fillOpacity: 0.2
 };
 
-window.editableCircle1 = new MapboxCircle([-75.341, 39.986], 350, editableOpts).addTo(map);
+window.editableCircle0 = new MapboxCircle([-75.341, 39.986], 350, editableOpts).addTo(map);
 
-window.plainCircle1 = new MapboxCircle([-75.345, 39.982], 250, nonEditableOpts).addTo(map);
+window.plainCircle0 = new MapboxCircle([-75.345, 39.982], 250, nonEditableOpts).addTo(map);
 
-window.plainCircle2 = new MapboxCircle([-75.344, 39.983], 300, nonEditableOpts).addTo(map);
+window.plainCircle1 = new MapboxCircle([-75.344, 39.983], 300, nonEditableOpts).addTo(map);
 
-window.editableCircle2 = new MapboxCircle([-75.349, 39.984], 300, editableOpts).addTo(map);
-window.editableCircle4 = new MapboxCircle([-75.348, 39.989], 250, editableOpts).addTo(map);
-window.editableCircle5 = new MapboxCircle([-75.340, 39.980], 225, editableOpts).addTo(map);
+window.editableCircle1 = new MapboxCircle([-75.349, 39.984], 300, editableOpts).addTo(map);
+window.editableCircle2 = new MapboxCircle([-75.348, 39.989], 250, editableOpts).addTo(map);
+window.editableCircle3 = new MapboxCircle([-75.340, 39.980], 225, editableOpts).addTo(map);
 
-window.plainCircle3 = new MapboxCircle([-75.345, 39.983], 150, nonEditableOpts).addTo(map);
-window.plainCircle4 = new MapboxCircle([-75.352, 39.983], 200, nonEditableOpts).addTo(map);
+window.plainCircle2 = new MapboxCircle([-75.345, 39.983], 150, nonEditableOpts).addTo(map);
+window.plainCircle3 = new MapboxCircle([-75.352, 39.983], 200, nonEditableOpts).addTo(map);
+
+window.setTimeout(function() {
+    window.editableCircle1.remove();
+    window.editableCircle3.remove();
+    window.setTimeout(function() {
+        window.editableCircle1.addTo(map);
+        window.editableCircle3.addTo(map);
+    }, 1250);
+}, 2500);
