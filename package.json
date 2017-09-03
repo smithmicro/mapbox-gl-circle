@@ -84,6 +84,7 @@
     "@turf/distance": "^4.5.2",
     "@turf/helpers": "^4.5.2",
     "@turf/truncate": "^4.5.2",
+    "events": "^1.1.1",
     "lodash": "^4.17.4",
     "lodash.debounce": "^4.0.8",
     "mapbox-gl": "^0.38.0"
