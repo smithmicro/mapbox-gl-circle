@@ -8,7 +8,7 @@ WORKDIR /opt/mapbox-gl-circle
 
 COPY package.json example/index.js lib/main.js /opt/mapbox-gl-circle/
 
-RUN npm install
+RUN mkdir -p example/ lib/ && mv index.js example/ && mv main.js lib/ && npm install
 
 EXPOSE 9966
 

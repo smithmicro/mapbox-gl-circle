@@ -18,12 +18,15 @@
     -   [\_zoom](#_zoom)
     -   [\_circle](#_circle)
     -   [\_handles](#_handles)
-    -   [\_dragActive](#_dragactive)
+    -   [\_centerDragActive](#_centerdragactive)
+    -   [\_radiusDragActive](#_radiusdragactive)
     -   [addTo](#addto)
     -   [remove](#remove)
     -   [getBounds](#getbounds)
 
 ## MapboxCircle
+
+**Extends EventEmitter**
 
 A `google.maps.Circle` replacement for Mapbox GL JS, rendering a "spherical cap" on top of the world.
 
@@ -111,7 +114,11 @@ Type: Polygon
 
 Type: [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Point>
 
-### \_dragActive
+### \_centerDragActive
+
+Type: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+
+### \_radiusDragActive
 
 Type: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
