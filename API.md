@@ -18,17 +18,10 @@
     -   [\_zoom](#_zoom)
     -   [\_circle](#_circle)
     -   [\_handles](#_handles)
-    -   [getBounds](#getbounds)
-    -   [onZoomEnd](#onzoomend)
-    -   [onCenterHandleMouseDown](#oncenterhandlemousedown)
-    -   [onCenterHandleMouseMove](#oncenterhandlemousemove)
-    -   [onCenterHandleMouseUp](#oncenterhandlemouseup)
-    -   [onRadiusHandleMouseDown](#onradiushandlemousedown)
-    -   [onRadiusHandleMouseMove](#onradiushandlemousemove)
-    -   [onRadiusHandleMouseUp](#onradiushandlemouseup)
-    -   [onMouseMove](#onmousemove)
+    -   [\_dragActive](#_dragactive)
     -   [addTo](#addto)
     -   [remove](#remove)
+    -   [getBounds](#getbounds)
 
 ## MapboxCircle
 
@@ -118,60 +111,13 @@ Type: Polygon
 
 Type: [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Point>
 
-### getBounds
+### \_dragActive
 
-Get geodesic bounds for the circle.
-
-Returns **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** 
-
-### onZoomEnd
-
-Adjust circle precision (steps used to draw the polygon).
-
-### onCenterHandleMouseDown
-
-Disable panning, set color of center handle, add onCenterHandleMouseMove (drag) listener and wait for mouse-up.
-
-### onCenterHandleMouseMove
-
-Mouse-move listener, emulating a drag listener in conjunction with onCenterHandleMouseDown/onCenterHandleMouseUp.
-
-**Parameters**
-
--   `event` **MapMouseEvent** 
-
-### onCenterHandleMouseUp
-
-Restore center handle color, re-enable panning and remove onCenterHandleMouseMove (drag) listener.
-
-### onRadiusHandleMouseDown
-
-Disable panning, set color of radius handles, add mouse-move listener and wait for mouse-up (emulating drag).
-
-### onRadiusHandleMouseMove
-
-Mouse-move listener for the radius handles, emulating a drag event with
-onRadiusHandleMouseDown/onRadiusHandleMouseUp.
-
-**Parameters**
-
--   `event` **MapMouseEvent** 
-
-### onRadiusHandleMouseUp
-
-Restore color of radius handles, re-enable panning and deactivate existing mouse-move listener.
-
-### onMouseMove
-
-Deactivate existing mouse-down listeners, check position and add new ones for map or handle as appropriate.
-
-**Parameters**
-
--   `event` **MapMouseEvent** 
+Type: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ### addTo
 
-Set map and initialize it with Mapbox GL layers for circle artifacts.
+Set map and initialize it with Mapbox GL layers for the circle artifacts.
 
 **Parameters**
 
@@ -184,3 +130,9 @@ Returns **[MapboxCircle](#mapboxcircle)**
 Remove source data, layers and listeners from map.
 
 Returns **[MapboxCircle](#mapboxcircle)** 
+
+### getBounds
+
+Get geodesic bounds for the circle.
+
+Returns **\[[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** 
