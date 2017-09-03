@@ -42,6 +42,14 @@ See [API.md](https://github.com/mblomdahl/mapbox-gl-circle/blob/master/API.md).
 
 ## Changelog
 
+### v. 1.2.5
+
+* More bug fixes:
+  * The circle can now successfully remove itself from the map
+  * Multiple circles may be added to the map and edited without causing too much conflict
+  * Initial center/radius drag interaction no longer fails
+
+
 ### v. 1.2.4
 
 * Bug fixes; passing `editable: false` when creating a circle is now respected, along with any styling options
