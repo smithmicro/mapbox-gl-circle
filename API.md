@@ -28,6 +28,7 @@
     -   [onRadiusHandleMouseUp](#onradiushandlemouseup)
     -   [onMouseMove](#onmousemove)
     -   [addTo](#addto)
+    -   [remove](#remove)
 
 ## MapboxCircle
 
@@ -175,5 +176,11 @@ Set map and initialize it with Mapbox GL layers for circle artifacts.
 **Parameters**
 
 -   `map` **mapboxgl.Map** 
+
+Returns **[MapboxCircle](#mapboxcircle)** 
+
+### remove
+
+Remove source data, layers and listeners from map.
 
 Returns **[MapboxCircle](#mapboxcircle)** 
