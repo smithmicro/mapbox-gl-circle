@@ -60,3 +60,19 @@ window.setTimeout(function() {
         window.editableCircle3.addTo(map);
     }, 1250);
 }, 2500);
+
+
+window.editableCircle2.addListener('radiuschanged', function(circleObj) {
+    // eslint-disable-next-line
+    console.log('editableCircle2', circleObj);
+});
+
+window.editableCircle2.addListener('radiuschanged', function(circleObj) {
+    // eslint-disable-next-line
+    console.log('editableCircle2', circleObj);
+});
+
+window.editableCircle3.addListener('radiuschanged', function(circleObj) {
+    // eslint-disable-next-line
+    console.log('editableCircle3', circleObj);
+});
