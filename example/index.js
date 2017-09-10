@@ -52,27 +52,36 @@ window.editableCircle3 = new MapboxCircle([-75.340, 39.980], 225, editableOpts).
 window.plainCircle2 = new MapboxCircle([-75.345, 39.983], 150, nonEditableOpts).addTo(map);
 window.plainCircle3 = new MapboxCircle([-75.352, 39.983], 200, nonEditableOpts).addTo(map);
 
-window.setTimeout(function() {
+window.setTimeout(function () {
     window.editableCircle1.remove();
     window.editableCircle3.remove();
-    window.setTimeout(function() {
+    window.setTimeout(function () {
         window.editableCircle1.addTo(map);
         window.editableCircle3.addTo(map);
     }, 1250);
 }, 2500);
 
 
-window.editableCircle2.addListener('radiuschanged', function(circleObj) {
-    // eslint-disable-next-line
-    console.log('editableCircle2', circleObj);
-});
+window.editableCircle2
+    .addListener('radiuschanged', function (circleObj) {
+        // eslint-disable-next-line
+        console.log('editableCircle2/radiuschanged', circleObj);
+    })
+    .addListener('centerchanged', function (circleObj) {
+        // eslint-disable-next-line
+        console.log('editableCircle2/centerchanged', circleObj);
+    })
+    .addListener('radiuschanged', function (circleObj) {
+        // eslint-disable-next-line
+        console.log('editableCircle2/radiuschanged', circleObj);
+    });
 
-window.editableCircle2.addListener('radiuschanged', function(circleObj) {
-    // eslint-disable-next-line
-    console.log('editableCircle2', circleObj);
-});
-
-window.editableCircle3.addListener('radiuschanged', function(circleObj) {
-    // eslint-disable-next-line
-    console.log('editableCircle3', circleObj);
-});
+window.editableCircle3
+    .addListener('radiuschanged', function (circleObj) {
+        // eslint-disable-next-line
+        console.log('editableCircle3/radiuschanged', circleObj);
+    })
+    .addListener('centerchanged', function (circleObj) {
+        // eslint-disable-next-line
+        console.log('editableCircle3/centerchanged', circleObj);
+    });
