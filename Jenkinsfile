@@ -108,7 +108,6 @@ pipeline {
                     },
                     'API Docs': {
                         sh 'npm run docs'
-                        archiveArtifacts 'API.md'
                     }
                 )
             }
