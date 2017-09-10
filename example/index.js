@@ -63,25 +63,25 @@ window.setTimeout(function () {
 
 
 window.editableCircle2
-    .addListener('radiuschanged', function (circleObj) {
+    .on('radiuschanged', function (circleObj) {
         // eslint-disable-next-line
         console.log('editableCircle2/radiuschanged', circleObj);
     })
-    .addListener('centerchanged', function (circleObj) {
+    .on('centerchanged', function (circleObj) {
         // eslint-disable-next-line
         console.log('editableCircle2/centerchanged', circleObj);
     })
-    .addListener('radiuschanged', function (circleObj) {
+    .on('radiuschanged', function (circleObj) {
         // eslint-disable-next-line
         console.log('editableCircle2/radiuschanged', circleObj);
     });
 
 window.editableCircle3
-    .addListener('radiuschanged', function (circleObj) {
+    .on('radiuschanged', function (circleObj) {
         // eslint-disable-next-line
         console.log('editableCircle3/radiuschanged', circleObj);
     })
-    .addListener('centerchanged', function (circleObj) {
+    .on('centerchanged', function (circleObj) {
         // eslint-disable-next-line
         console.log('editableCircle3/centerchanged', circleObj);
     });
