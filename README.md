@@ -136,11 +136,17 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
     npm run prepare
 
-### Build `API.md` Docs
+### Build Usage/API Documentation
 
     npm run docs
 
 ## Changelog
+
+### v. 1.3.0
+
+-   Added setters and getters for center/radius
+-   _MapboxCircle_ now allows subscribing to events and fires `centerchanged`/`radiuschanged` on user modification
+-   Improved API documentation + moved it into README / Usage
 
 ### v. 1.2.5
 
@@ -177,7 +183,8 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 -   Refactored helper functions from `example/index.js` into _MapboxCircle_ class, obsoleted _index.html_ with
     DOM updates in _example/index.js_
 -   Refactor into _MapboxCircle_ into new-style ES6 class
--   Made _MapboxCircle.animate()_ and a bunch of properties private, added overridable defaults for fillColor/fillOpacity
+-   Made _MapboxCircle.animate()_ and a bunch of properties private, added overridable defaults for
+    fillColor/fillOpacity
 -   Updated ESLint config to respect browser/commonjs built-ins and added docs to _MapboxCircle_ in order to
     align with ESLint JSDoc requirements
 -   Updated project details in package.json and committed first-draft API documentation
@@ -186,14 +193,11 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 Updated circle from Mapbox [bl.ocks.org sample](https://bl.ocks.org/ryanbaumann/d286190943d6b4eb70e65a9f76eab5a5/d3cd7cea5feed0dfddbf3705b7936ff560f668d1).
 
-Now provides handles for modifying position/radius. Seems to also do better
-performance wise.
+Now provides handles for modifying position/radius. Seems to also do better performance wise.
 
 ### v. 1.0.0
 
 The initial 1.0.0 release is a modified version of
-the [Draw-Circle.zip](https://www.dropbox.com/s/ya7am28y8eugd72/Draw-Circle.zip?dl=0)
-archive we got from Mapbox.
+the [Draw-Circle.zip](https://www.dropbox.com/s/ya7am28y8eugd72/Draw-Circle.zip?dl=0) archive we got from Mapbox.
 
-Live demo of the original can be found here:
-<https://www.mapbox.com/labs/draw-circle/>
+Live demo of the original can be found here: <https://www.mapbox.com/labs/draw-circle/>
