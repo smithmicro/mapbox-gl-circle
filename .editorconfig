@@ -13,3 +13,6 @@ indent_size = 4
 [{package.json,package-lock.json,.travis.yml}]
 indent_style = space
 indent_size = 2
+
+[README.md]
+trim_trailing_whitespace = false
