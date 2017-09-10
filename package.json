@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-circle",
-  "version": "1.2.5",
+  "version": "1.3.0",
   "author": "Smith Micro Software, Inc.",
   "license": "ISC",
   "description": "A google.maps.Circle replacement for Mapbox GL JS API",
@@ -14,7 +14,7 @@
     "watchify": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.js --debug -v",
     "browserify": "mkdir -p dist && browserify lib/main.js -o dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.js --debug --delay=0 -v",
     "prepare": "mkdir -p dist && browserify --standalone MapboxCircle -t [ babelify --presets [ es2015 ] ] lib/main.js | uglifyjs -c -m > dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.min.js",
-    "docs": "documentation build lib/main.js --format=md > API.md",
+    "docs": "documentation lint lib/main.js && documentation readme lib/main.js --access public --section=Usage",
     "lint": "eslint lib"
   },
   "browserify": {

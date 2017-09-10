@@ -10,6 +10,7 @@
     },
     "rules": {
         "max-len": ["error", {"code": 120, "ignoreStrings": true}],
-        "comma-dangle": ["error", "never"]
+        "comma-dangle": ["error", "never"],
+        "space-before-function-paren": ["warn", {"anonymous": "always", "named": "never"}]
     }
 }
