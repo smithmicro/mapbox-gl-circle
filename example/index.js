@@ -82,6 +82,22 @@ window.editableCircle2
     .on('radiuschanged', function (circleObj) {
         // eslint-disable-next-line
         console.log('editableCircle2/radiuschanged', circleObj.getRadius());
+    })
+    .on('click', function (mouseEvent) {
+        // eslint-disable-next-line
+        console.log('editableCircle2/click', mouseEvent);
+    })
+    .on('contextmenu', function (mouseEvent) {
+        // eslint-disable-next-line
+        console.log('editableCircle2/contextmenu', mouseEvent);
+    })
+    .on('click', function (mouseEvent) {
+        // eslint-disable-next-line
+        console.log('editableCircle2/click', mouseEvent);
+    })
+    .on('contextmenu', function (mouseEvent) {
+        // eslint-disable-next-line
+        console.log('editableCircle2/contextmenu', mouseEvent);
     });
 
 window.editableCircle3
@@ -98,4 +114,12 @@ window.editableCircle3
     .on('centerchanged', function (circleObj) {
         // eslint-disable-next-line
         console.log('editableCircle3/centerchanged', circleObj.getCenter());
+    })
+    .on('click', function (mouseEvent) {
+        // eslint-disable-next-line
+        console.log('editableCircle3/click', mouseEvent);
+    })
+    .on('contextmenu', function (mouseEvent) {
+        // eslint-disable-next-line
+        console.log('editableCircle3/contextmenu', mouseEvent);
     });
