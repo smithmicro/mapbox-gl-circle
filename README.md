@@ -59,8 +59,9 @@ Subscribe to circle event.
 
 **Parameters**
 
--   `event` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name; `centerchanged` or `radiuschanged`
--   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Event handler, invoked with target circle as first argument
+-   `event` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name; `click`, `contextmenu`, `centerchanged` or `radiuschanged`
+-   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Event handler, invoked with the target circle as first argument on
+        _'centerchanged'_ and _'radiuschanged'_, or a _MapMouseEvent_ on _'click'_ and _'contextmenu'_ events
 -   `onlyOnce` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Remove handler after first call (optional, default `false`)
 
 Returns **[MapboxCircle](#mapboxcircle)** 
@@ -142,6 +143,10 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.4.0
+
+-   _MapboxCircle_ now supports subscribing to `click` and `contextmenu` (right-click) events
+ 
 ### v. 1.3.0
 
 -   Added setters and getters for center/radius
