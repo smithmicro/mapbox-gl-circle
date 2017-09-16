@@ -1,1 +1,100 @@
-<h1>hello world</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <title>MapboxCircle Demo</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet'/>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src='dist/mapbox-gl-circle.min.js'></script>
+    <!--<script src='https://npmcdn.com/mapbox-gl-circle/dist/mapbox-gl-circle.min.js'></script>-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #status {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+<div id='status'><strong>Tip! Right-click on map to add new circles.</strong></div>
+<div id='map'></div>
+<!--suppress ES6ConvertVarToLetConst, ES6ModulesDependencies -->
+<script>
+    // noinspection SpellCheckingInspection
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYW5hbmR0aGFra2VyIiwiYSI6ImNqNWptdjU1YjJheWszM256ZWN0MXNrejMifQ.TXnoKtnlam-KBmRSjXQgEw';
+
+    function boundsTo5percentRadius(bounds) {
+        // noinspection JSCheckFunctionSignatures
+        return Math.round(
+            turf.distance(bounds.getSouthWest().toArray(), bounds.getNorthEast().toArray(), 'meters') * .05);
+    }
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [18.059678, 59.322465],
+        zoom: 12.305430
+    });
+
+    // Non-editable circles.
+    var lidingoMunicipality = {position: {lat: 59.379278, lng: 18.17814}, radius: 4846};
+
+    new MapboxCircle(lidingoMunicipality.position, lidingoMunicipality.radius, {
+        strokeColor: '#0000ff',
+        strokeOpacity: 0.25,
+        strokeWeight: 2,
+        refineStroke: true,
+        fillColor: '#000000',
+        fillOpacity: 0.05
+    }).addTo(map);
+
+    // Editable circles.
+    var irelandAndUK = {position: {lat: 54.431637, lng: -4.223538}, radius: 547293};
+    var oldTown = {position: {lat: 59.325017, lng: 18.069263}, radius: 508};
+    var smsiStockholm = {position: {lat: 59.346978, lng: 18.039120}, radius: 142};
+    var kvadratSthlm = {position: {lat: 59.34131, lng: 18.058817}, radius: 122};
+    var stormforsOffice = {position: {lat: 59.337678, lng: 18.083402}, radius: 85};
+    var midsommarkransenSubway = {position: {lat: 59.301857, lng: 18.012292}, radius: 131};
+
+    var editableCircleOpts = {
+        editable: true,
+        statusEl: document.getElementById('status')
+    };
+
+    [irelandAndUK, oldTown, smsiStockholm, kvadratSthlm, stormforsOffice, midsommarkransenSubway].forEach(
+        function (item) {
+            var newEditable = new MapboxCircle(item.position, item.radius, editableCircleOpts).addTo(map)
+                .on('click', function () { // Left-click on circle to remove.
+                    newEditable.remove();
+                });
+        });
+
+    map.on('contextmenu', function (event) { // Right-click on map to add new circle.
+        var newEditable = new MapboxCircle(event.lngLat, boundsTo5percentRadius(map.getBounds()), editableCircleOpts)
+            .on('click', function () {
+                newEditable.remove();
+            })
+            .addTo(map);
+    });
+
+</script>
+
+</body>
+</html>
