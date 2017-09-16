@@ -47,10 +47,12 @@ myCircle.on('radiuschanged', function (circle) {
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** 
     -   `options.editable` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Enable handles for changing center and radius (optional, default `false`)
     -   `options.strokeColor` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Stroke color (optional, default `'#000000'`)
-    -   `options.strokeWeight` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke weight (optional, default `2`)
-    -   `options.strokeOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke opacity (optional, default `0.5`)
+    -   `options.strokeWeight` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke weight (optional, default `0.5`)
+    -   `options.strokeOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke opacity (optional, default `0.75`)
     -   `options.fillColor` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Fill color (optional, default `'#FB6A4A'`)
-    -   `options.fillOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Fill opacity (optional, default `0.5`)
+    -   `options.fillOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Fill opacity (optional, default `0.25`)
+    -   `options.refineStroke` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Adjust circle polygon precision based on radius and zoom
+            (i.e. prettier circles at the expense of performance) (optional, default `false`)
     -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Property metadata for Mapbox GL JS circle object (optional, default `{}`)
 
 #### on
