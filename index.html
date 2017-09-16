@@ -66,6 +66,7 @@
     }).addTo(map);
 
     // Editable circles.
+    var northPole = {position: {lat: 84.928218, lng: -38.074812}, radius: 1100000};
     var irelandAndUK = {position: {lat: 54.431637, lng: -4.223538}, radius: 547293};
     var oldTown = {position: {lat: 59.325017, lng: 18.069263}, radius: 508};
     var smsiStockholm = {position: {lat: 59.346978, lng: 18.039120}, radius: 142};
@@ -78,7 +79,7 @@
         statusEl: document.getElementById('status')
     };
 
-    [irelandAndUK, oldTown, smsiStockholm, kvadratSthlm, stormforsOffice, midsommarkransenSubway].forEach(
+    [northPole, irelandAndUK, oldTown, smsiStockholm, kvadratSthlm, stormforsOffice, midsommarkransenSubway].forEach(
         function (item) {
             var newEditable = new MapboxCircle(item.position, item.radius, editableCircleOpts).addTo(map)
                 .on('click', function () { // Left-click on circle to remove.
