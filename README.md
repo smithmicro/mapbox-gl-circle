@@ -47,10 +47,12 @@ myCircle.on('radiuschanged', function (circle) {
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** 
     -   `options.editable` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Enable handles for changing center and radius (optional, default `false`)
     -   `options.strokeColor` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Stroke color (optional, default `'#000000'`)
-    -   `options.strokeWeight` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke weight (optional, default `2`)
-    -   `options.strokeOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke opacity (optional, default `0.5`)
+    -   `options.strokeWeight` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke weight (optional, default `0.5`)
+    -   `options.strokeOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke opacity (optional, default `0.75`)
     -   `options.fillColor` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Fill color (optional, default `'#FB6A4A'`)
-    -   `options.fillOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Fill opacity (optional, default `0.5`)
+    -   `options.fillOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Fill opacity (optional, default `0.25`)
+    -   `options.refineStroke` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Adjust circle polygon precision based on radius and zoom
+            (i.e. prettier circles at the expense of performance) (optional, default `false`)
     -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Property metadata for Mapbox GL JS circle object (optional, default `{}`)
 
 #### on
@@ -63,6 +65,17 @@ Subscribe to circle event.
 -   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Event handler, invoked with the target circle as first argument on
         _'centerchanged'_ and _'radiuschanged'_, or a _MapMouseEvent_ on _'click'_ and _'contextmenu'_ events
 -   `onlyOnce` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Remove handler after first call (optional, default `false`)
+
+Returns **[MapboxCircle](#mapboxcircle)** 
+
+#### once
+
+Alias for registering event listener with _onlyOnce=true_, see [#on](#on).
+
+**Parameters**
+
+-   `event` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name
+-   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Event handler
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
@@ -143,10 +156,14 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.4.1
+
+-   Performance and stability fixes
+
 ### v. 1.4.0
 
 -   _MapboxCircle_ now supports subscribing to `click` and `contextmenu` (right-click) events
- 
+
 ### v. 1.3.0
 
 -   Added setters and getters for center/radius
