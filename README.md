@@ -146,7 +146,7 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 ### v. 1.4.0
 
 -   _MapboxCircle_ now supports subscribing to `click` and `contextmenu` (right-click) events
- 
+
 ### v. 1.3.0
 
 -   Added setters and getters for center/radius
