@@ -156,6 +156,10 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.4.1
+
+-   Performance and stability fixes
+
 ### v. 1.4.0
 
 -   _MapboxCircle_ now supports subscribing to `click` and `contextmenu` (right-click) events
