@@ -24,16 +24,20 @@
 
         #status {
             position: absolute;
+            font-family: "Consolas", monospace;
+            font-size: small;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.75);
         }
     </style>
 </head>
 <body>
-<div id='status'><strong>Tip! Right-click on map to add new circles.</strong></div>
+<div id='status'>
+    <div style="text-align: center;"><strong>Tip! Right-click on map to add new circles.</strong></div>
+</div>
 <div id='map'></div>
 <!--suppress ES6ConvertVarToLetConst, ES6ModulesDependencies -->
 <script>
@@ -79,17 +83,20 @@
         statusEl: document.getElementById('status')
     };
 
+    var baseDelay = 500;
     [northPole, irelandAndUK, oldTown, smsiStockholm, kvadratSthlm, stormforsOffice, midsommarkransenSubway].forEach(
         function (item) {
-            var newEditable = new MapboxCircle(item.position, item.radius, editableCircleOpts).addTo(map)
-                .on('click', function () { // Left-click on circle to remove.
-                    newEditable.remove();
-                });
+            window.setTimeout(function () {
+                var newEditable = new MapboxCircle(item.position, item.radius, editableCircleOpts).addTo(map)
+                    .once('click', function () { // Left-click on circle to remove.
+                        newEditable.remove();
+                    });
+            }, baseDelay += 500);
         });
 
     map.on('contextmenu', function (event) { // Right-click on map to add new circle.
         var newEditable = new MapboxCircle(event.lngLat, boundsTo5percentRadius(map.getBounds()), editableCircleOpts)
-            .on('click', function () {
+            .once('click', function () {
                 newEditable.remove();
             })
             .addTo(map);

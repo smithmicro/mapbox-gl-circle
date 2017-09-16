@@ -68,6 +68,17 @@ Subscribe to circle event.
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
+#### once
+
+Alias for registering event listener with _onlyOnce=true_, see [#on](#on).
+
+**Parameters**
+
+-   `event` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name
+-   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Event handler
+
+Returns **[MapboxCircle](#mapboxcircle)** 
+
 #### off
 
 Unsubscribe to circle event.
