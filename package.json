@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-circle",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": "Smith Micro Software, Inc.",
   "license": "ISC",
   "description": "A google.maps.Circle replacement for Mapbox GL JS API",
