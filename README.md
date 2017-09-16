@@ -146,11 +146,11 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
     npm run browserify
 
-### Build Distributable Bundle
+### Build Distributable Package
 
-    npm run prepare
+    npm pack
 
-### Build Usage/API Documentation
+### Update README API Documentation
 
     npm run docs
 
