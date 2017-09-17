@@ -156,6 +156,14 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.4.2
+
+-   README updated with [Getting Started](#getting-started) section
+-   Improved usage examples
+-   Bug fixes:
+    -   Creating circle instances with bundler import failed
+    -   Docker build serving the wrong `index.html`    
+
 ### v. 1.4.1
 
 -   Performance and stability fixes
