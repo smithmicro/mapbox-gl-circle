@@ -10,7 +10,7 @@ interactive editing via draggable center/radius handles. Just like the Google or
 ## Getting Started
 
 Include [mapbox-gl-circle.min.js](https://npmcdn.com/mapbox-gl-circle/dist/mapbox-gl-circle.min.js) in
-the `<head>` of your HTML file to add the *MapboxCircle* object to global scope:
+the `<head>` of your HTML file to add the _MapboxCircle_ object to global scope:
 
 ```html
 <script src='https://npmcdn.com/mapbox-gl-circle/dist/mapbox-gl-circle.min.js'></script>
@@ -21,6 +21,7 @@ Or even better, fashionably importing it using a module bundler:
 ```npm
 npm install --save mapbox-gl-circle
 ```
+
 ```javascript
 const MapboxCircle = require('mapbox-gl-circle');
 // or "import MapboxCircle from 'mapbox-gl-circle';"
