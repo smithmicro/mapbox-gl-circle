@@ -22,7 +22,7 @@
             width: 100%;
         }
 
-        #status {
+        #info {
             position: absolute;
             font-family: "Consolas", monospace;
             font-size: x-small;
@@ -35,8 +35,11 @@
     </style>
 </head>
 <body>
-<div id='status'>
-    <div style="text-align: center;"><strong>Tip! Right-click on map to add new circles.</strong></div>
+<div id='info'>
+    <div style="text-align: center;">
+        <strong>Tips! Right-click on map to add new circle. Left-click on a circle to remove it.</strong>
+    </div>
+    <div id="debug"></div>
 </div>
 <div id='map'></div>
 <!--suppress ES6ConvertVarToLetConst, ES6ModulesDependencies -->
@@ -80,7 +83,7 @@
 
     var editableCircleOpts = {
         editable: true,
-        statusEl: document.getElementById('status')
+        statusEl: document.getElementById('debug')
     };
 
     var baseDelay = 500;
@@ -88,15 +91,18 @@
         function (item) {
             window.setTimeout(function () {
                 var newEditable = new MapboxCircle(item.position, item.radius, editableCircleOpts).addTo(map)
-                    .once('click', function () { // Left-click on circle to remove.
+                    .once('click', function (mapMouseEvent) { // Left-click on circle to remove.
+                        console.log('remove circle / mapMouseEvent:', mapMouseEvent);
                         newEditable.remove();
                     });
             }, baseDelay += 500);
         });
 
     map.on('contextmenu', function (event) { // Right-click on map to add new circle.
+        console.log('Add editable circle at ' + event.lngLat);
         var newEditable = new MapboxCircle(event.lngLat, boundsTo5percentRadius(map.getBounds()), editableCircleOpts)
-            .once('click', function () {
+            .once('click', function (mapMouseEvent) {
+                console.log('remove circle / mapMouseEvent:', mapMouseEvent);
                 newEditable.remove();
             })
             .addTo(map);

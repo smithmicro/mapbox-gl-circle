@@ -30,7 +30,7 @@ const editableOpts = {
     strokeOpacity: 0.85,
     fillColor: '#29AB87',
     fillOpacity: 0.2,
-    statusEl: document.body.appendChild(document.createElement('div'))
+    debugEl: document.body.appendChild(document.createElement('div'))
 };
 
 const nonEditableOpts = {
