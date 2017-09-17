@@ -1,5 +1,6 @@
 'use strict';
 
+const _ = require('lodash');
 const mapboxgl = require('mapbox-gl');
 const MapboxCircle = require('../lib/main.js');
 
@@ -33,6 +34,8 @@ const editableOpts = {
     debugEl: document.body.appendChild(document.createElement('div'))
 };
 
+const extraPrettyEditableOpts = _.extend({refineStroke: true}, editableOpts);
+
 const nonEditableOpts = {
     strokeWeight: 0,
     fillColor: '#000000',
@@ -48,7 +51,7 @@ window.plainCircle1 = new MapboxCircle({lat: 39.983, lng: -75.344}, 300, nonEdit
 window.editableCircle1 = new MapboxCircle({lat: 39.984, lng: -75.349}, 300, editableOpts).addTo(map)
     .setCenter({lat: 39.989, lng: -75.348}).setRadius(50);
 
-window.editableCircle2 = new MapboxCircle({lat: 39.974377, lng: -75.639449}, 25000, editableOpts).addTo(map);
+window.editableCircle2 = new MapboxCircle({lat: 39.974377, lng: -75.639449}, 25000, extraPrettyEditableOpts).addTo(map);
 window.editableCircle3 = new MapboxCircle({lat: 39.980, lng: -75.340}, 225, editableOpts).addTo(map);
 
 window.plainCircle2 = new MapboxCircle({lat: 39.983, lng: -75.345}, 150, nonEditableOpts).addTo(map);

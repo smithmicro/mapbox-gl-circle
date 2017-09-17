@@ -52,8 +52,8 @@ var myCircle = new MapboxCircle({lat: 39.984, lng: -75.343}, 25000, {
 myCircle.on('centerchanged', function (circleObj) {
         console.log('New center:', circleObj.getCenter());
     });
-myCircle.on('radiuschanged', function (circleObj) {
-        console.log('New radius:', circleObj.getRadius());
+myCircle.once('radiuschanged', function (circleObj) {
+        console.log('New radius (once!):', circleObj.getRadius());
     });
 myCircle.on('click', function (mapMouseEvent) {
         console.log('Click:', mapMouseEvent.point);
