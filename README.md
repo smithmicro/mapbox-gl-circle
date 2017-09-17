@@ -44,7 +44,7 @@ A `google.maps.Circle` replacement for Mapbox GL JS, rendering a "spherical cap"
 **Examples**
 
 ```javascript
-var myCircle = new MapboxCircle([-75.343, 39.984], 25000, {
+var myCircle = new MapboxCircle({lat: 39.984, lng: -75.343}, 25000, {
         editable: true,
         fillColor: '#29AB87'
     }).addTo(myMapboxGlMap);
