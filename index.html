@@ -22,6 +22,13 @@
             width: 100%;
         }
 
+        #menu {
+            position: absolute;
+            background: #fff;
+            padding: 10px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
         #info {
             position: absolute;
             font-family: "Consolas", monospace;
@@ -42,6 +49,20 @@
     <div id="debug"></div>
 </div>
 <div id='map'></div>
+<div id='menu'>
+    <input id='basic' type='radio' name='rtoggle' value='basic'>
+    <label for='basic'>basic</label>
+    <input id='streets' type='radio' name='rtoggle' value='streets' checked='checked'>
+    <label for='streets'>streets</label>
+    <input id='bright' type='radio' name='rtoggle' value='bright'>
+    <label for='bright'>bright</label>
+    <input id='light' type='radio' name='rtoggle' value='light'>
+    <label for='light'>light</label>
+    <input id='dark' type='radio' name='rtoggle' value='dark'>
+    <label for='dark'>dark</label>
+    <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+    <label for='satellite'>satellite</label>
+</div>
 <!--suppress ES6ConvertVarToLetConst, ES6ModulesDependencies -->
 <script>
     // noinspection SpellCheckingInspection
@@ -59,6 +80,18 @@
         center: [18.059678, 59.322465],
         zoom: 12.305430
     });
+
+    var layerList = document.getElementById('menu');
+    var inputs = layerList.getElementsByTagName('input');
+
+    function switchLayer(clickEvent) {
+        var layerId = clickEvent.target.id;
+        map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = switchLayer;
+    }
 
     // Non-editable circles.
     var lidingoMunicipality = {position: {lat: 59.379278, lng: 18.17814}, radius: 4846};
