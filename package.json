@@ -69,11 +69,15 @@
     "babelify": "^7.3.0",
     "brfs": "^1.4.3",
     "browserify": "^14.4.0",
+    "buble": "^0.15.2",
     "budo": "^10.0.3",
     "documentation": "^5.1.0",
     "eslint": "^4.2.0",
     "eslint-config-google": "^0.9.1",
+    "esutils": "^2.0.2",
+    "magic-string": "^0.22.4",
     "uglify-js": "^3.0.24",
+    "vlq": "^0.2.2",
     "watchify": "^3.9.0"
   },
   "dependencies": {
