@@ -70,6 +70,7 @@
 
     function boundsTo5percentRadius(bounds) {
         // noinspection JSCheckFunctionSignatures
+        // noinspection JSUnresolvedVariable
         return Math.round(
             turf.distance(bounds.getSouthWest().toArray(), bounds.getNorthEast().toArray(), 'meters') * .05);
     }
