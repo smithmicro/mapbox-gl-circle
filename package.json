@@ -87,6 +87,6 @@
     "events": "^1.1.1",
     "lodash": "^4.17.4",
     "lodash.debounce": "^4.0.8",
-    "mapbox-gl": "^0.38.0"
+    "mapbox-gl": "^0.40.1"
   }
 }
