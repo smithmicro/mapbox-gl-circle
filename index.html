@@ -28,10 +28,22 @@
             padding-left: 5px;
             font-family: 'Open Sans', sans-serif;
             font-size: x-small;
+            z-index: 100;
         }
 
         #menu > label {
             padding-right: 5px;
+        }
+
+        #version {
+            position: absolute;
+            font-family: "Consolas", monospace;
+            font-weight: bold;
+            font-size: x-small;
+            padding-right: 3px;
+            top: 0;
+            right: 0;
+            z-index: 100;
         }
 
         #info {
@@ -53,7 +65,6 @@
     </div>
     <div id="debug"></div>
 </div>
-<div id='map'></div>
 <div id='menu'>
     <strong>Map Style:</strong>
     <input id='basic' type='radio' name='styleSwitcher' value='basic'>
@@ -71,8 +82,12 @@
     <input id='satellite-streets' type='radio' name='styleSwitcher' value='satellite-streets'>
     <label for='satellite-streets'>satellite-streets</label>
 </div>
+<div id='version'></div>
+<div id='map'></div>
 <!--suppress ES6ConvertVarToLetConst, ES6ModulesDependencies -->
 <script>
+    document.getElementById('version').textContent = 'mapbox-gl-circle-' + MapboxCircle.VERSION;
+
     // noinspection SpellCheckingInspection
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW5hbmR0aGFra2VyIiwiYSI6ImNqNWptdjU1YjJheWszM256ZWN0MXNrejMifQ.TXnoKtnlam-KBmRSjXQgEw';
 
