@@ -7,8 +7,8 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.css' rel='stylesheet'/>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-    <script src='https://npmcdn.com/mapbox-gl-circle/dist/mapbox-gl-circle.min.js'></script>
     <script src='dist/mapbox-gl-circle.min.js'></script>
+    <script src='https://npmcdn.com/mapbox-gl-circle/dist/mapbox-gl-circle.min.js'></script>
     <style>
         body {
             margin: 0;
@@ -117,7 +117,7 @@
 
     var editableCircleOpts = {
         editable: true,
-        statusEl: document.getElementById('debug')
+        debugEl: document.getElementById('debug')
     };
 
     var baseDelay = 500;
