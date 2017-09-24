@@ -4,11 +4,11 @@
     <meta charset='utf-8'/>
     <title>MapboxCircle Demo</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet'/>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.css' rel='stylesheet'/>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-    <script src='https://npmcdn.com/mapbox-gl-circle/dist/mapbox-gl-circle.min.js'></script>
     <script src='dist/mapbox-gl-circle.min.js'></script>
+    <script src='https://npmcdn.com/mapbox-gl-circle/dist/mapbox-gl-circle.min.js'></script>
     <style>
         body {
             margin: 0;
@@ -20,6 +20,18 @@
             top: 0;
             bottom: 0;
             width: 100%;
+        }
+
+        #menu {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.75);
+            padding-left: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: x-small;
+        }
+
+        #menu > label {
+            padding-right: 5px;
         }
 
         #info {
@@ -42,6 +54,23 @@
     <div id="debug"></div>
 </div>
 <div id='map'></div>
+<div id='menu'>
+    <strong>Map Style:</strong>
+    <input id='basic' type='radio' name='styleSwitcher' value='basic'>
+    <label for='basic'>basic</label>
+    <input id='streets' type='radio' name='styleSwitcher' value='streets' checked='checked'>
+    <label for='streets'>streets</label>
+    <input id='bright' type='radio' name='styleSwitcher' value='bright'>
+    <label for='bright'>bright</label>
+    <input id='light' type='radio' name='styleSwitcher' value='light'>
+    <label for='light'>light</label>
+    <input id='dark' type='radio' name='styleSwitcher' value='dark'>
+    <label for='dark'>dark</label>
+    <input id='satellite' type='radio' name='styleSwitcher' value='satellite'>
+    <label for='satellite'>satellite</label>
+    <input id='satellite-streets' type='radio' name='styleSwitcher' value='satellite-streets'>
+    <label for='satellite-streets'>satellite-streets</label>
+</div>
 <!--suppress ES6ConvertVarToLetConst, ES6ModulesDependencies -->
 <script>
     // noinspection SpellCheckingInspection
@@ -49,6 +78,7 @@
 
     function boundsTo5percentRadius(bounds) {
         // noinspection JSCheckFunctionSignatures
+        // noinspection JSUnresolvedVariable
         return Math.round(
             turf.distance(bounds.getSouthWest().toArray(), bounds.getNorthEast().toArray(), 'meters') * .05);
     }
@@ -59,6 +89,18 @@
         center: [18.059678, 59.322465],
         zoom: 12.305430
     });
+
+    var layerList = document.getElementById('menu');
+    var inputs = layerList.getElementsByTagName('input');
+
+    function switchLayer(clickEvent) {
+        var layerId = clickEvent.target.id;
+        map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = switchLayer;
+    }
 
     // Non-editable circles.
     var lidingoMunicipality = {position: {lat: 59.379278, lng: 18.17814}, radius: 4846};
@@ -83,7 +125,7 @@
 
     var editableCircleOpts = {
         editable: true,
-        statusEl: document.getElementById('debug')
+        debugEl: document.getElementById('debug')
     };
 
     var baseDelay = 500;
