@@ -5,7 +5,7 @@ const mapboxgl = require('mapbox-gl');
 const MapboxCircle = require('../lib/main.js');
 
 // eslint-disable-next-line
-console.log('Loaded MapboxCircle v. ' + MapboxCircle.VERSION);
+console.log("Loaded MapboxCircle from 'mapbox-gl-circle-" + MapboxCircle.VERSION + "'");
 
 const mapDiv = document.body.appendChild(document.createElement('div'));
 mapDiv.style.position = 'absolute';
