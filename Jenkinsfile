@@ -103,9 +103,15 @@ pipeline {
                         archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.js"
                     },
                     'Production Bundle': {
-                        sh 'npm pack'
-                        archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.min.js"
-                        archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.tgz"
+                        script {
+                            if (env.BUILD_TYPE in ['next', 'latest']) {
+                                sh 'npm pack'
+                                archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.tgz"
+                            } else {
+                                sh 'npm run prepare'
+                                archiveArtifacts "dist/mapbox-gl-circle-${BUILD_VERSION}.min.js"
+                            }
+                        }
                     },
                     'API Docs': {
                         sh 'npm run docs'
