@@ -4,6 +4,9 @@ const _ = require('lodash');
 const mapboxgl = require('mapbox-gl');
 const MapboxCircle = require('../lib/main.js');
 
+// eslint-disable-next-line
+console.log("Loaded MapboxCircle from 'mapbox-gl-circle-" + MapboxCircle.VERSION + "'");
+
 const mapDiv = document.body.appendChild(document.createElement('div'));
 mapDiv.style.position = 'absolute';
 mapDiv.style.top = '32px';
@@ -11,13 +14,40 @@ mapDiv.style.right = 0;
 mapDiv.style.left = 0;
 mapDiv.style.bottom = 0;
 
+const defaultStyle = 'streets';
+
+const styleMenuDiv = document.body.appendChild(document.createElement('div'));
+styleMenuDiv.id = 'menu';
+styleMenuDiv.style.position = 'absolute';
+styleMenuDiv.style.left = 0;
+styleMenuDiv.style.bottom = 0;
+styleMenuDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+
+for (let styleOption of ['basic', 'streets', 'bright', 'light', 'dark', 'satellite', 'satellite-streets']) {
+    let inputEl = styleMenuDiv.appendChild(document.createElement('input'));
+    inputEl.type = 'radio';
+    inputEl.name = 'styleSwitcher';
+    inputEl.id = inputEl.value = styleOption;
+    if (styleOption === defaultStyle) {
+        inputEl.checked = true;
+    }
+
+    inputEl.onclick = function setStyle(clickEvent) {
+        map.setStyle('mapbox://styles/mapbox/' + clickEvent.target.id + '-v9');
+    };
+
+    let labelEl = styleMenuDiv.appendChild(document.createElement('label'));
+    labelEl.for = labelEl.textContent = styleOption;
+    labelEl.style.paddingRight = '10px';
+}
+
 // noinspection SpellCheckingInspection
 mapboxgl.accessToken = 'pk.eyJ1IjoicnNiYXVtYW5uIiwiYSI6IjdiOWEzZGIyMGNkOGY3NWQ4ZTBhN2Y5ZGU2Mzg2NDY2In0.jycgv7qwF8MMIWt4cT0RaQ';
 
 const center = {lat: 39.984, lng: -75.343};
 const map = new mapboxgl.Map({
     container: mapDiv,
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/' + defaultStyle + '-v9',
     center: [center.lng, center.lat],
     zoom: 14
 });

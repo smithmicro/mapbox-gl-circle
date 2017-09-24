@@ -181,6 +181,11 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.4.3
+
+-   Bug fix for handling _map.setStyle_ updates
+-   Added package version property to circle class
+
 ### v. 1.4.2
 
 -   README updated with [Getting Started](#getting-started) section
