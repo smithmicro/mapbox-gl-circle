@@ -24,9 +24,14 @@
 
         #menu {
             position: absolute;
-            background: #fff;
-            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.75);
+            padding-left: 5px;
             font-family: 'Open Sans', sans-serif;
+            font-size: x-small;
+        }
+
+        #menu > label {
+            padding-right: 5px;
         }
 
         #info {
@@ -50,6 +55,7 @@
 </div>
 <div id='map'></div>
 <div id='menu'>
+    <strong>Map Style:</strong>
     <input id='basic' type='radio' name='styleSwitcher' value='basic'>
     <label for='basic'>basic</label>
     <input id='streets' type='radio' name='styleSwitcher' value='streets' checked='checked'>
@@ -62,6 +68,8 @@
     <label for='dark'>dark</label>
     <input id='satellite' type='radio' name='styleSwitcher' value='satellite'>
     <label for='satellite'>satellite</label>
+    <input id='satellite-streets' type='radio' name='styleSwitcher' value='satellite-streets'>
+    <label for='satellite-streets'>satellite-streets</label>
 </div>
 <!--suppress ES6ConvertVarToLetConst, ES6ModulesDependencies -->
 <script>
