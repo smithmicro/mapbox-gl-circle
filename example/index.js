@@ -4,6 +4,9 @@ const _ = require('lodash');
 const mapboxgl = require('mapbox-gl');
 const MapboxCircle = require('../lib/main.js');
 
+// eslint-disable-next-line
+console.log('Loaded MapboxCircle v. ' + MapboxCircle.VERSION);
+
 const mapDiv = document.body.appendChild(document.createElement('div'));
 mapDiv.style.position = 'absolute';
 mapDiv.style.top = '32px';
