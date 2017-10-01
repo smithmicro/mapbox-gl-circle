@@ -78,6 +78,8 @@ myCircle.on('contextmenu', function (mapMouseEvent) {
     -   `options.fillOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Fill opacity (optional, default `0.25`)
     -   `options.refineStroke` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Adjust circle polygon precision based on radius and zoom
             (i.e. prettier circles at the expense of performance) (optional, default `false`)
+    -   `options.minRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Minimum radius (optional, default `10`)
+    -   `options.maxRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Maximum radius (optional, default `1100000`)
     -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Property metadata for Mapbox GL JS circle object (optional, default `{}`)
 
 #### on
