@@ -61,6 +61,8 @@ const editableOpts = {
     strokeOpacity: 0.85,
     fillColor: '#29AB87',
     fillOpacity: 0.2,
+    minRadius: 100,
+    maxRadius: 500000,
     debugEl: document.body.appendChild(document.createElement('div'))
 };
 
