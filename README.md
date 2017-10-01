@@ -46,6 +46,7 @@ A `google.maps.Circle` replacement for Mapbox GL JS, rendering a "spherical cap"
 ```javascript
 var myCircle = new MapboxCircle({lat: 39.984, lng: -75.343}, 25000, {
         editable: true,
+        minRadius: 1500,
         fillColor: '#29AB87'
     }).addTo(myMapboxGlMap);
 
@@ -71,6 +72,8 @@ myCircle.on('contextmenu', function (mapMouseEvent) {
 -   `radius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Meter radius
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** 
     -   `options.editable` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Enable handles for changing center and radius (optional, default `false`)
+    -   `options.minRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Minimum radius on user interaction (optional, default `10`)
+    -   `options.maxRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Maximum radius on user interaction (optional, default `1100000`)
     -   `options.strokeColor` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Stroke color (optional, default `'#000000'`)
     -   `options.strokeWeight` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke weight (optional, default `0.5`)
     -   `options.strokeOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke opacity (optional, default `0.75`)
@@ -78,8 +81,6 @@ myCircle.on('contextmenu', function (mapMouseEvent) {
     -   `options.fillOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Fill opacity (optional, default `0.25`)
     -   `options.refineStroke` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Adjust circle polygon precision based on radius and zoom
             (i.e. prettier circles at the expense of performance) (optional, default `false`)
-    -   `options.minRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Minimum radius (optional, default `10`)
-    -   `options.maxRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Maximum radius (optional, default `1100000`)
     -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Property metadata for Mapbox GL JS circle object (optional, default `{}`)
 
 #### on
@@ -182,6 +183,10 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
     npm run docs
 
 ## Changelog
+
+### v. 1.5.0
+
+-   Added support for passing `minRadius` and `maxRadius` options to _MapboxCircle_ constructor
 
 ### v. 1.4.3
 
