@@ -184,6 +184,11 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.5.1
+
+-   Bug fixes with respect to cursor style when hovering over editable-and-clickable circles
+    [SPFAM-1293](https://projects.smithmicro.net/browse/SPFAM-1293)
+
 ### v. 1.5.0
 
 -   Added support for passing `minRadius` and `maxRadius` options to _MapboxCircle_ constructor
