@@ -86,6 +86,7 @@
     "@turf/bbox-polygon": "^4.5.2",
     "@turf/circle": "^4.5.2",
     "@turf/destination": "^4.5.2",
+    "@turf/bearing": "^4.5.2",
     "@turf/distance": "^4.5.2",
     "@turf/helpers": "^4.5.2",
     "@turf/truncate": "^4.5.2",
