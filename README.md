@@ -184,6 +184,11 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.5.2
+
+-   Fix bug where the circle would always show a horizontal resize cursor on radius handles,
+    irrespective of position (top/bottom/right/left)
+
 ### v. 1.5.1
 
 -   Bug fixes with respect to cursor style when hovering over editable-and-clickable circles
