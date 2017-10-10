@@ -123,6 +123,7 @@ Returns **[MapboxCircle](#mapboxcircle)**
 **Parameters**
 
 -   `map` **mapboxgl.Map** Target map for adding and initializing circle Mapbox GL layers/data/listeners.
+-   `before` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** ID of an existing layer to insert the new circle layer before. If this argument is omitted, the circle layer will be appended to the end of the layers array. (optional, default `undefined`)
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
