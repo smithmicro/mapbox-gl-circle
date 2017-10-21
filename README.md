@@ -186,6 +186,11 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.6.0
+
+-   Add optional `before` argument to _MapboxCircle.addTo_
+    ([#50](https://github.com/mblomdahl/mapbox-gl-circle/issues/50))
+
 ### v. 1.5.2
 
 -   Fix bug where the circle would always show a horizontal resize cursor on radius handles,
