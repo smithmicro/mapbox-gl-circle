@@ -190,6 +190,7 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 -   Add optional `before` argument to _MapboxCircle.addTo_
     ([#50](https://github.com/mblomdahl/mapbox-gl-circle/issues/50))
+-   Updated center/radius handle interactions to make performance issues more subtle 
 
 ### v. 1.5.2
 
