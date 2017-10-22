@@ -103,7 +103,7 @@
         style: 'mapbox://styles/mapbox/streets-v9',
         center: [18.059678, 59.322465],
         zoom: 12.305430
-    });
+    }).addControl(new mapboxgl.ScaleControl({maxWidth: 300}), 'top-right');
 
     var layerList = document.getElementById('menu');
     var inputs = layerList.getElementsByTagName('input');
