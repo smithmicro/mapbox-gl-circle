@@ -123,8 +123,8 @@ Returns **[MapboxCircle](#mapboxcircle)**
 **Parameters**
 
 -   `map` **mapboxgl.Map** Target map for adding and initializing circle Mapbox GL layers/data/listeners.
--   `before` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Layer ID to insert the circle layers before, else they will be appended to
-        the end of the layers array (optional, default `undefined`)
+-   `before` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Layer ID to insert the circle layers before; explicitly pass `null` to
+        get the circle assets appended at the end of map-layers array (optional, default `'waterway-label'`)
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
