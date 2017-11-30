@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-circle",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "author": "Smith Micro Software, Inc.",
   "license": "ISC",
   "description": "A google.maps.Circle replacement for Mapbox GL JS API",
@@ -93,6 +93,6 @@
     "events": "^1.1.1",
     "lodash": "^4.17.4",
     "lodash.debounce": "^4.0.8",
-    "mapbox-gl": "^0.40.1"
+    "mapbox-gl": "^0.42.2"
   }
 }
