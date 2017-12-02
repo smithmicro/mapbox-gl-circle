@@ -53,25 +53,9 @@ const map = new mapboxgl.Map({
 });
 
 window.map = map;
+
 const markerElement = document.createElement('div');
-markerElement.style.backgroundImage = 'url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2Q' +
-    'tanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gNjUK/9sAQwALCAgKCAcLCgkKDQwLDREcEhEPDxEiGRoUHCkkKyo' +
-    'oJCcnLTJANy0wPTAnJzhMOT1DRUhJSCs2T1VORlRAR0hF/9sAQwEMDQ0RDxEhEhIhRS4nLkVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUV' +
-    'FRUVFRUVFRUVFRUVFRUVFRUVFRUVF/8AAEQgAMgAyAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAI' +
-    'BAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1R' +
-    'VVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5eb' +
-    'n6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVE' +
-    'HYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIW' +
-    'Gh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8' +
-    'AikvLK/sHIWGOaAgjEZU479h6jBrNfEWCedwzkc5H+fWsjT5JV0m+MzCL7it2OQTj8Otbw0y8udLj8qNjIi53YwCOKAM558ttXr1+lVJHBY/' +
-    'PwPvN/SnXen31qhE0Lxx936j9K5+/1AkeTFwB1NAGraTx32ox2aSrGHbbvbhRWlqOiPZpFIsyzJIOGUYwfSuLtZpIZ0aN2Ug5+Xnn6V18V/L' +
-    'c6VGjvIcOeWA/AZHXvQBU8g/3qKTZn+5+lFAHTxWltb2Y85SV83KxoOXxkD8OavpfzXNvL5DY6KingZJAwT0GeatXWkPbMFuB5WPmBGef8Kt' +
-    'olvc6ReWNo0STXCFHZvvYI5oAmsrmPUTPCbdWgtiqM2M7uSuPxNcp4z8M6To1u+oJbqI5x8uc8Oe2P8K2vh5/aN1d3VhfwTJHbljNIG+Rn/h' +
-    'Gf4uCT6V0uqeG4Lizlt7n/SUJ3lJPu+2B2oA8Ts9FEqoVBMuB8o9D3rc1HT/7Mgt7TJDrH9768/1rb0rTrvTnEN0ofywAuB0qHxZKFu4WZeW' +
-    'iBOegoAwVdAoG/oPSiqn263HGUooA9h1uZ9S04TQLwAOAevrWNpmjx3BR5EJ525I5ArH8IeKzMPsNy/HXJru9OeKMgqAfmOWH8VAGrpul2mn' +
-    'B/ssPls33iP4qlvTGiFpCFHT3JqW3lSWFXT7rdKp6pZfakUAHg5GDgg+v60AcreGBLx5FJ3nr16Via/o8WulAMhkAAxnmuvk0wGTLAHGeetQ' +
-    'MkcHIABHNAHBDwmigA2wyODzRXbG5hJ6Afl/hRQB4rpTFb1NpIwwxivZtNY/Yup4QY9utFFAG9YMRGmCenrWuDyv0oooArXX3Ce+a5HUGIeT' +
-    'BPWiigDmjI+T8zfnRRRQB/9k=)';
+markerElement.style.backgroundImage = 'url(https://placekitten.com/g/50/)';
 markerElement.style.width = '50px';
 markerElement.style.height = '50px';
 markerElement.style.borderRadius = '50%';
