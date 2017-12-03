@@ -186,6 +186,10 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.6.2
+
+-   Handle center/radius drag interactions over Mapbox GL markers
+
 ### v. 1.6.1
 
 -   Improved move animation ([#55](https://github.com/mblomdahl/mapbox-gl-circle/issues/55)) 
