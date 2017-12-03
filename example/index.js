@@ -52,6 +52,17 @@ const map = new mapboxgl.Map({
     zoom: 14
 });
 
+window.map = map;
+
+const markerElement = document.createElement('div');
+markerElement.style.backgroundImage = 'url(https://placekitten.com/g/50/)';
+markerElement.style.width = '50px';
+markerElement.style.height = '50px';
+markerElement.style.borderRadius = '50%';
+window.marker1 = new mapboxgl.Marker(markerElement)
+    .setLngLat([center.lng, center.lat])
+    .addTo(map);
+
 // MapboxCircle Setup
 
 const editableOpts = {
@@ -158,3 +169,4 @@ window.editableCircle3
         // eslint-disable-next-line
         console.log('editableCircle3/contextmenu', mouseEvent);
     });
+
