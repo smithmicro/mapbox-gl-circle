@@ -189,6 +189,7 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 ### v. 1.6.2
 
 -   Handle center/radius drag interactions over Mapbox GL markers
+-   Watch for removal of map container and handle removal 
 
 ### v. 1.6.1
 
