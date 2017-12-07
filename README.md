@@ -186,6 +186,10 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.6.3
+
+-   Transferring core project into SmithMicro organization, `mblomdahl/mapbox-gl-circle -> smithmicro/mapbox-gl-circle`
+
 ### v. 1.6.2
 
 -   Handle center/radius drag interactions over Mapbox GL markers
@@ -193,12 +197,12 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ### v. 1.6.1
 
--   Improved move animation ([#55](https://github.com/mblomdahl/mapbox-gl-circle/issues/55)) 
+-   Improved move animation ([#55](https://github.com/smithmicro/mapbox-gl-circle/issues/55)) 
 
 ### v. 1.6.0
 
 -   Add optional `before` argument to _MapboxCircle.addTo_
-    ([#50](https://github.com/mblomdahl/mapbox-gl-circle/issues/50))
+    ([#50](https://github.com/smithmicro/mapbox-gl-circle/issues/50))
 -   Updated center/radius handle interactions to make performance issues more subtle 
 
 ### v. 1.5.2
