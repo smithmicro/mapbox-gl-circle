@@ -6,7 +6,7 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.css' rel='stylesheet'/>
-    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src='https://npmcdn.com/@turf/turf@4.7.3/turf.min.js'></script>
     <script src='dist/mapbox-gl-circle.min.js'></script>
     <script src='https://npmcdn.com/mapbox-gl-circle/dist/mapbox-gl-circle.min.js'></script>
     <style>
@@ -92,8 +92,8 @@
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW5hbmR0aGFra2VyIiwiYSI6ImNqNWptdjU1YjJheWszM256ZWN0MXNrejMifQ.TXnoKtnlam-KBmRSjXQgEw';
 
     function boundsTo5percentRadius(bounds) {
-        // noinspection JSCheckFunctionSignatures
         // noinspection JSUnresolvedVariable
+        // noinspection JSCheckFunctionSignatures
         return Math.round(
             turf.distance(bounds.getSouthWest().toArray(), bounds.getNorthEast().toArray(), 'meters') * .05);
     }

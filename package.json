@@ -1,12 +1,12 @@
 {
   "name": "mapbox-gl-circle",
-  "version": "1.6.1",
+  "version": "1.6.3",
   "author": "Smith Micro Software, Inc.",
   "license": "ISC",
   "description": "A google.maps.Circle replacement for Mapbox GL JS API",
-  "homepage": "https://github.com/mblomdahl/mapbox-gl-circle#readme",
+  "homepage": "https://github.com/smithmicro/mapbox-gl-circle#readme",
   "bugs": {
-    "url": "https://github.com/mblomdahl/mapbox-gl-circle/issues"
+    "url": "https://github.com/smithmicro/mapbox-gl-circle/issues"
   },
   "main": "lib/main.js",
   "scripts": {
@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:mblomdahl/mapbox-gl-circle.git"
+    "url": "git+ssh://git@github.com:smithmicro/mapbox-gl-circle.git"
   },
   "keywords": [
     "mapbox",
