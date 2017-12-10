@@ -186,6 +186,13 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Changelog
 
+### v. 1.6.4
+
+-   Performance improvements for Firefox and Edge on slow computers
+    ([#64](https://github.com/smithmicro/mapbox-gl-circle/issues/64),
+    [#59](https://github.com/smithmicro/mapbox-gl-circle/issues/59))
+-   Deprecated Docker build step 
+
 ### v. 1.6.3
 
 -   Transferring core project into SmithMicro organization, `mblomdahl/mapbox-gl-circle -> smithmicro/mapbox-gl-circle`

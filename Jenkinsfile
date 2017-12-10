@@ -34,7 +34,11 @@ pipeline {
                             return fullBranchName.split('/') as List
                         }
 
-                        throw new AssertionError("Enforcing Gitflow Workflow and SemVer. Ha!")
+                        if (fullBranchName.matches(/PR-\d+$/)) {
+                            return fullBranchName.split('-') as List
+                        }
+
+                        error "Enforcing Gitflow Workflow and SemVer on '${fullBranchName}'. Ha!"
                     }
 
                     def getBuildVersion = { String fullBranchName, buildNumber ->
@@ -55,8 +59,10 @@ pipeline {
                             case 'release':
                                 assert branchTypeAndName[1] == projectVersion
                                 return "${projectVersion}-rc.${buildNumber}"
+                            case 'PR':
+                                return "${projectVersion}+PR.${branchTypeAndName[1]}.${buildNumber}"
                             default:
-                                throw new AssertionError("Oops, Mats messed up! :(")
+                                error "Oops, we messed up! :("
                         }
                     }
 
@@ -73,8 +79,6 @@ pipeline {
 
                     env.BUILD_VERSION = getBuildVersion(BRANCH_NAME as String, BUILD_NUMBER)
                     env.NPM_TAG = getNpmTag(BRANCH_NAME as String)
-                    env.DOCKER_TAG = env.BUILD_VERSION.replace('+', '_')
-                    env.DOCKER_TAG_ALIAS = env.NPM_TAG
                     env.BUILD_TYPE = env.NPM_TAG ? env.NPM_TAG : 'develop'  // latest, next or develop
 
                     if (env.BUILD_TYPE == 'next') {
@@ -125,27 +129,10 @@ pipeline {
             }
             environment {
                 NPM_TOKEN = credentials('mblomdahl_npm')
-                DOCKER_LOGIN = credentials('docker_smithmicro_io')
             }
             steps {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
-                    'Docker Image': {
-                        dir('_docker-build') {
-                            unstash 'pre_install_git_checkout'
-                            sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW docker.smithmicro.io'
-                            sh 'docker build -t docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG .'
-                            sh 'docker save docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG | gzip - \
-> mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'
-                            archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
-
-                            sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG'
-                            sh 'docker tag docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG \
-docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
-                            sh 'docker push docker.smithmicro.io/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
-                            deleteDir()
-                        }
-                    },
                     'NPM Package': {
                         sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc'
                         sh 'npm publish --tag $NPM_TAG .'
