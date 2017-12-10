@@ -1,5 +1,5 @@
-# Build: docker build -t docker.smithmicro.io/mapbox-gl-circle:dev .
-# Start: docker run -itp 9966:9966 docker.smithmicro.io/mapbox-gl-circle:dev
+# Build: docker build -t mapbox-gl-circle:dev .
+# Start: docker run -itp 9966:9966 mapbox-gl-circle:dev
 # Evaluate: open http://localhost:9966
 
 FROM node:8-alpine
