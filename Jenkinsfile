@@ -34,7 +34,11 @@ pipeline {
                             return fullBranchName.split('/') as List
                         }
 
-                        throw new AssertionError("Enforcing Gitflow Workflow and SemVer. Ha!")
+                        if (fullBranchName.matches(/PR-\d+$/)) {
+                            return fullBranchName.split('-') as List
+                        }
+
+                        error "Enforcing Gitflow Workflow and SemVer on '${fullBranchName}'. Ha!"
                     }
 
                     def getBuildVersion = { String fullBranchName, buildNumber ->
@@ -55,8 +59,10 @@ pipeline {
                             case 'release':
                                 assert branchTypeAndName[1] == projectVersion
                                 return "${projectVersion}-rc.${buildNumber}"
+                            case 'PR':
+                                return "${projectVersion}+PR.${branchTypeAndName[1]}.${buildNumber}"
                             default:
-                                throw new AssertionError("Oops, Mats messed up! :(")
+                                error "Oops, we messed up! :("
                         }
                     }
 
