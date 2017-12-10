@@ -79,8 +79,6 @@ pipeline {
 
                     env.BUILD_VERSION = getBuildVersion(BRANCH_NAME as String, BUILD_NUMBER)
                     env.NPM_TAG = getNpmTag(BRANCH_NAME as String)
-                    env.DOCKER_TAG = env.BUILD_VERSION.replace('+', '_')
-                    env.DOCKER_TAG_ALIAS = env.NPM_TAG
                     env.BUILD_TYPE = env.NPM_TAG ? env.NPM_TAG : 'develop'  // latest, next or develop
 
                     if (env.BUILD_TYPE == 'next') {
@@ -131,28 +129,10 @@ pipeline {
             }
             environment {
                 NPM_TOKEN = credentials('mblomdahl_npm')
-                DOCKER_HOST = credentials('docker_registry_host')
-                DOCKER_LOGIN = credentials('docker_registry_login')
             }
             steps {
                 //noinspection GroovyAssignabilityCheck
                 parallel(
-                    'Docker Image': {
-                        dir('_docker-build') {
-                            unstash 'pre_install_git_checkout'
-                            sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW $DOCKER_HOST'
-                            sh 'docker build -t $DOCKER_HOST/mapbox-gl-circle:$DOCKER_TAG .'
-                            sh 'docker save $DOCKER_HOST/mapbox-gl-circle:$DOCKER_TAG | gzip - \
-> mapbox-gl-circle-$BUILD_VERSION.docker.tar.gz'
-                            archiveArtifacts "mapbox-gl-circle-${BUILD_VERSION}.docker.tar.gz"
-
-                            sh 'docker push $DOCKER_HOST/mapbox-gl-circle:$DOCKER_TAG'
-                            sh 'docker tag $DOCKER_HOST/mapbox-gl-circle:$DOCKER_TAG \
-$DOCKER_HOST/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
-                            sh 'docker push $DOCKER_HOST/mapbox-gl-circle:$DOCKER_TAG_ALIAS'
-                            deleteDir()
-                        }
-                    },
                     'NPM Package': {
                         sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc'
                         sh 'npm publish --tag $NPM_TAG .'
