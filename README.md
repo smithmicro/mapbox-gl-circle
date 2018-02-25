@@ -186,6 +186,11 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/docs/Web/JavaScript/
 
 ## Changelog
 
+### v. 1.6.5
+
+-   Bug fix for layer switching in `mapbox-gl>0.40.1` ([#73](https://github.com/smithmicro/mapbox-gl-circle/issues/73))
+-   Half-fixed bug causing errors when adding circle to map style without the `waterway-label` layer
+
 ### v. 1.6.4
 
 -   Performance improvements for Firefox and Edge on slow computers
