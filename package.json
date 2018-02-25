@@ -72,7 +72,7 @@
     "browserify": "^14.5.0",
     "buble": "^0.15.2",
     "budo": "^10.0.4",
-    "documentation": "^5.4.0",
+    "documentation": "^5.1.0",
     "eslint": "^4.18.1",
     "eslint-config-google": "^0.9.1",
     "esutils": "^2.0.2",
