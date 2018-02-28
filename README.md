@@ -68,20 +68,20 @@ myCircle.on('contextmenu', function (mapMouseEvent) {
 
 **Parameters**
 
--   `center` **({lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)} | \[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)])** Circle center as an object or `[lng, lat]` coordinates
--   `radius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Meter radius
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** 
-    -   `options.editable` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Enable handles for changing center and radius (optional, default `false`)
-    -   `options.minRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Minimum radius on user interaction (optional, default `10`)
-    -   `options.maxRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Maximum radius on user interaction (optional, default `1100000`)
-    -   `options.strokeColor` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Stroke color (optional, default `'#000000'`)
-    -   `options.strokeWeight` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke weight (optional, default `0.5`)
-    -   `options.strokeOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke opacity (optional, default `0.75`)
-    -   `options.fillColor` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Fill color (optional, default `'#FB6A4A'`)
-    -   `options.fillOpacity` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Fill opacity (optional, default `0.25`)
-    -   `options.refineStroke` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Adjust circle polygon precision based on radius and zoom
+-   `center` **({lat: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)} | \[[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number), [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)])** Circle center as an object or `[lng, lat]` coordinates
+-   `radius` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Meter radius
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** 
+    -   `options.editable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Enable handles for changing center and radius (optional, default `false`)
+    -   `options.minRadius` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Minimum radius on user interaction (optional, default `10`)
+    -   `options.maxRadius` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Maximum radius on user interaction (optional, default `1100000`)
+    -   `options.strokeColor` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Stroke color (optional, default `'#000000'`)
+    -   `options.strokeWeight` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke weight (optional, default `0.5`)
+    -   `options.strokeOpacity` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Stroke opacity (optional, default `0.75`)
+    -   `options.fillColor` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Fill color (optional, default `'#FB6A4A'`)
+    -   `options.fillOpacity` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** Fill opacity (optional, default `0.25`)
+    -   `options.refineStroke` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Adjust circle polygon precision based on radius and zoom
             (i.e. prettier circles at the expense of performance) (optional, default `false`)
-    -   `options.properties` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Property metadata for Mapbox GL JS circle object (optional, default `{}`)
+    -   `options.properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Property metadata for Mapbox GL JS circle object (optional, default `{}`)
 
 #### on
 
@@ -89,10 +89,10 @@ Subscribe to circle event.
 
 **Parameters**
 
--   `event` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name; `click`, `contextmenu`, `centerchanged` or `radiuschanged`
--   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Event handler, invoked with the target circle as first argument on
+-   `event` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name; `click`, `contextmenu`, `centerchanged` or `radiuschanged`
+-   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Event handler, invoked with the target circle as first argument on
         _'centerchanged'_ and _'radiuschanged'_, or a _MapMouseEvent_ on _'click'_ and _'contextmenu'_ events
--   `onlyOnce` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Remove handler after first call (optional, default `false`)
+-   `onlyOnce` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** Remove handler after first call (optional, default `false`)
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
@@ -102,8 +102,8 @@ Alias for registering event listener with _onlyOnce=true_, see [#on](#on).
 
 **Parameters**
 
--   `event` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name
--   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Event handler
+-   `event` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name
+-   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Event handler
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
@@ -113,8 +113,8 @@ Unsubscribe to circle event.
 
 **Parameters**
 
--   `event` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name
--   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Handler to be removed
+-   `event` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Event name
+-   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Handler to be removed
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
@@ -123,7 +123,7 @@ Returns **[MapboxCircle](#mapboxcircle)**
 **Parameters**
 
 -   `map` **mapboxgl.Map** Target map for adding and initializing circle Mapbox GL layers/data/listeners.
--   `before` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Layer ID to insert the circle layers before; explicitly pass `null` to
+-   `before` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Layer ID to insert the circle layers before; explicitly pass `null` to
         get the circle assets appended at the end of map-layers array (optional, default `'waterway-label'`)
 
 Returns **[MapboxCircle](#mapboxcircle)** 
@@ -136,31 +136,31 @@ Returns **[MapboxCircle](#mapboxcircle)**
 
 #### getCenter
 
-Returns **{lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)}** Circle center position
+Returns **{lat: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)}** Circle center position
 
 #### setCenter
 
 **Parameters**
 
--   `position` **{lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)}** 
+-   `position` **{lat: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)}** 
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
 #### getRadius
 
-Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Current radius, in meters
+Returns **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Current radius, in meters
 
 #### setRadius
 
 **Parameters**
 
--   `newRadius` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Meter radius
+-   `newRadius` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Meter radius
 
 Returns **[MapboxCircle](#mapboxcircle)** 
 
 #### getBounds
 
-Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)}, ne: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)}}** Southwestern/northeastern bounds
+Returns **{sw: {lat: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)}, ne: {lat: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number), lng: [number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)}}** Southwestern/northeastern bounds
 
 ## Development
 
@@ -185,6 +185,11 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/en-US/docs/Web/JavaS
     npm run docs
 
 ## Changelog
+
+### v. 1.6.5
+
+-   Bug fix for layer switching in `mapbox-gl>0.40.1` ([#73](https://github.com/smithmicro/mapbox-gl-circle/issues/73))
+-   Half-fixed bug causing errors when adding circle to map style without the `waterway-label` layer
 
 ### v. 1.6.4
 
