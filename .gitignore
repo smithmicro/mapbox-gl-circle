@@ -1,4 +1,6 @@
 .idea
-node_modules/
-dist/
+/node_modules/
+/dist/
+/example/*.js
+bundle.js
 *.tgz
