@@ -1,6 +1,6 @@
 {
-  "name": "mapbox-gl-circle",
-  "version": "1.6.5",
+  "name": "@mblomdahl/mapbox-gl-circle",
+  "version": "1.6.6-0",
   "author": "Smith Micro Software, Inc.",
   "license": "ISC",
   "description": "A google.maps.Circle replacement for Mapbox GL JS API",
@@ -11,11 +11,14 @@
   "main": "lib/main.js",
   "scripts": {
     "start": "budo example/index.js --live --force-default-index --title budo/mapbox-gl-circle --verbose -- -t brfs",
-    "watchify": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.js --debug -v",
-    "browserify": "mkdir -p dist && browserify lib/main.js -o dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.js --debug --delay=0 -v",
-    "prepare": "mkdir -p dist && browserify --standalone MapboxCircle -t [ babelify --presets [ es2015 ] ] lib/main.js | uglifyjs -c -m > dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.min.js && cp -f dist/mapbox-gl-circle-${BUILD_VERSION:-dev}.min.js dist/mapbox-gl-circle.min.js",
+    "watchify": "mkdir -p dist && watchify lib/main.js -o dist/mapbox-gl-circle.js --debug -v",
+    "browserify": "mkdir -p dist && browserify lib/main.js -o dist/mapbox-gl-circle.js --debug --delay=0 -v",
+    "prepare": "rm -rf dist && mkdir dist && browserify --standalone MapboxCircle -t [ babelify --presets [ es2015 ] ] lib/main.js | uglifyjs -c -m > dist/mapbox-gl-circle.min.js",
     "docs": "documentation lint lib/main.js && documentation readme lib/main.js --access public --section=Usage",
     "lint": "eslint lib"
+  },
+  "publishConfig": {
+    "@mblomdahl:registry": "https://npm.pkg.github.com"
   },
   "browserify": {
     "transform": [
@@ -33,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:smithmicro/mapbox-gl-circle.git"
+    "url": "git+ssh://git@github.com/smithmicro/mapbox-gl-circle.git"
   },
   "keywords": [
     "mapbox",
