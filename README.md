@@ -1,6 +1,7 @@
 # Spherical-Cap "Native Circle" for Mapbox GL JS
 
-[![.github/workflows/publish-prerelease.yml](https://github.com/mblomdahl/mapbox-gl-circle/actions/workflows/publish-prerelease.yml/badge.svg)](https://github.com/mblomdahl/mapbox-gl-circle/actions/workflows/publish-prerelease.yml)
+[![Lint and Build](https://github.com/mblomdahl/mapbox-gl-circle/actions/workflows/lint-and-build.yml/badge.svg)](https://github.com/mblomdahl/mapbox-gl-circle/actions/workflows/lint-and-build.yml)
+[![Publish Node.js Pre-Release](https://github.com/mblomdahl/mapbox-gl-circle/actions/workflows/publish-prerelease.yml/badge.svg)](https://github.com/mblomdahl/mapbox-gl-circle/actions/workflows/publish-prerelease.yml)
 [![NPM Version](https://img.shields.io/npm/v/mapbox-gl-circle.svg)](https://www.npmjs.com/package/mapbox-gl-circle)
 
 This project uses Turf.js to create a `google.maps.Circle` replacement, as a Mapbox GL JS compatible GeoJSON object.
