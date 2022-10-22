@@ -20,32 +20,40 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://npm.pkg.github.com/
       - run: npm ci
-      - run: npm run prepare
       - run: npm run docs
       - name: Publish Pre-Release
         run: |
           PKG_VERSION=$(npm version prerelease)
-          npm publish --tag=next
-          PUBLISH_AS_IS=$?
-          if [[ $PUBLISH_AS_IS -eq 0 ]]; then
-            echo "Pre-release $PKG_VERSION published."
-            git config --local user.email "actions@github.com"
-            git config --local user.name "GitHub Actions"
-            git add README.md package.json package-lock.json
-            git status
-            git commit -m":package: [skip ci] Pre-release \`$PKG_VERSION\` by :robot:
+          export BUILD_VERSION=${PKG_VERSION/v/}
+          rm -rf dist/
+          npm run browserify
+          npm run prepare
+
+          # Publish to NPM
+          echo 'registry=https://registry.npmjs.org' >> .npmrc
+          echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}' >> .npmrc
+          npm publish --tag=next --access=public
+          git restore .npmrc
+          echo "Pre-release $BUILD_VERSION published to NPM."
+
+          # Publish to GHP
+          echo 'registry=https://npm.pkg.github.com' >> .npmrc
+          echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' >> .npmrc
+          npm publish --tag=next --access=public
+          git restore .npmrc
+          echo "Pre-release $BUILD_VERSION published to GHP."
+
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add README.md package.json package-lock.json
+          git status
+          git commit -m":package: [skip ci] Pre-release \`$BUILD_VERSION\` by :robot:
 
           Co-authored-by: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           "
-            git log -n 2
-            exit 0
-          else
-            echo "Error exit code $PUBLISH_AS_IS" && exit $PUBLISH_AS_IS
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git log -n 2
+          echo "Done." && exit 0
       - name: Push Version Update
         uses: ad-m/github-push-action@master
         with:
