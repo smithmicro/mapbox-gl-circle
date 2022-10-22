@@ -11,8 +11,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-#      - run: npm ci
-#      - run: npm run lint
-#      - run: npm run browserify
-#      - run: npm run docs
-      - run: echo "Fake success!"
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run browserify
+      - run: npm run prepare
+      - run: npm run docs
