@@ -30,25 +30,32 @@ jobs:
           CHANGELOG_SECTION="### v. $BUILD_VERSION"
           echo "Ensure changelog has a '$CHANGELOG_SECTION' section ..." && grep -Fq "$CHANGELOG_SECTION" README.md
 
-          # Build package
+          # Build API documentation
+          npm run docs
+
+          # Build and publish to GHP
+          npm pkg set name=@smithmicro/mapbox-gl-circle
+          npm install
           rm -rf dist/
           npm run browserify
           npm run prepare
-          npm run docs
-
-          # Publish to NPM
-          echo 'registry=https://registry.npmjs.org' >> .npmrc
-          echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}' >> .npmrc
-          npm publish --tag=latest --access=public
-          git restore .npmrc
-          echo "Release $BUILD_VERSION published to NPM."
-
-          # Publish to GHP
           echo 'registry=https://npm.pkg.github.com' >> .npmrc
           echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' >> .npmrc
           npm publish --tag=latest --access=public
           git restore .npmrc
-          echo "Release $BUILD_VERSION published to GHP."
+          echo "Release @smithmicro/mapbox-gl-circle-$BUILD_VERSION published to GHP."
+
+          # Build and publish to NPM
+          npm pkg set name=mapbox-gl-circle
+          npm install
+          rm -rf dist/
+          npm run browserify
+          npm run prepare
+          echo 'registry=https://registry.npmjs.org' >> .npmrc
+          echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}' >> .npmrc
+          npm publish --tag=latest --access=public
+          git restore .npmrc
+          echo "Release mapbox-gl-circle-$BUILD_VERSION published to NPM."
 
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
