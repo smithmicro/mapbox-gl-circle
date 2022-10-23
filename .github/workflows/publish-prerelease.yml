@@ -21,14 +21,19 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm run docs
       - name: Publish Pre-Release
         run: |
+          # Versioning
           PKG_VERSION=$(npm version prerelease)
           export BUILD_VERSION=${PKG_VERSION/v/}
+          CHANGELOG_SECTION="### v. $(echo $BUILD_VERSION | cut -d- -f1)"
+          echo "Ensure changelog has a '$CHANGELOG_SECTION' section ..." && grep -Fq "$CHANGELOG_SECTION" README.md
+
+          # Build package
           rm -rf dist/
           npm run browserify
           npm run prepare
+          npm run docs
 
           # Publish to NPM
           echo 'registry=https://registry.npmjs.org' >> .npmrc
