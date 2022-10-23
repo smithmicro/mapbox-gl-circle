@@ -17,6 +17,10 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: issue-93-gh-actions
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -63,4 +67,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           branch: master
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GHA_MAPBOXGLCIRCLE_GITHUB_TOKEN }}
