@@ -191,6 +191,7 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/docs/Web/JavaScript/
 ### v. 1.6.7
 
 -   `optionalDependencies` removed from `package.json`, making this package easier to depend on ([#82](https://github.com/smithmicro/mapbox-gl-circle/issues/82))
+-   Bug fix for overlapping mouse-down events, causing the edit handle to lock until the user performs a full page refresh ([#80](https://github.com/smithmicro/mapbox-gl-circle/issues/80))
 
 ### v. 1.6.6
 
