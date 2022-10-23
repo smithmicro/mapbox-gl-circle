@@ -2,7 +2,7 @@
 # Start: docker run -itp 9966:9966 mapbox-gl-circle:dev
 # Evaluate: open http://localhost:9966
 
-FROM node:8-alpine
+FROM node:16-alpine
 
 WORKDIR /opt/mapbox-gl-circle
 

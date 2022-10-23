@@ -188,6 +188,10 @@ Returns **{sw: {lat: [number](https://developer.mozilla.org/docs/Web/JavaScript/
 
 ## Changelog
 
+### v. 1.6.7
+
+-   `optionalDependencies` removed from `package.json`, making this package easier to depend on ([#82](https://github.com/smithmicro/mapbox-gl-circle/issues/82))
+
 ### v. 1.6.6
 
 -   New CI/CD integration, replacing Jenkins with GitHub Actions ([#93](https://github.com/smithmicro/mapbox-gl-circle/issues/93))
