@@ -1,0 +1,19 @@
+name: Lint and Build
+
+on: [push, pull_request]
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+#      - uses: hmarr/debug-action@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run browserify
+      - run: npm run prepare
+      - run: npm run docs

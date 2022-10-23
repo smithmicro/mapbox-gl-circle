@@ -1,0 +1,71 @@
+name: Publish Pre-Release
+
+on:
+  workflow_run:
+    workflows:
+      - Lint and Build
+    types:
+      - completed
+    branches: [master]
+
+jobs:
+  publish-prerelease:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == 'smithmicro/mapbox-gl-circle' }}
+    permissions:
+      packages: write
+      contents: write
+    steps:
+#      - uses: hmarr/debug-action@v2
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: master
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - name: Publish Pre-Release
+        run: |
+          # Versioning
+          PKG_VERSION=$(npm version prerelease)
+          export BUILD_VERSION=${PKG_VERSION/v/}
+          CHANGELOG_SECTION="### v. $(echo $BUILD_VERSION | cut -d- -f1)"
+          echo "Ensure changelog has a '$CHANGELOG_SECTION' section ..." && grep -Fq "$CHANGELOG_SECTION" README.md
+
+          # Build package
+          rm -rf dist/
+          npm run browserify
+          npm run prepare
+          npm run docs
+
+          # Publish to NPM
+          echo 'registry=https://registry.npmjs.org' >> .npmrc
+          echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}' >> .npmrc
+          npm publish --tag=next --access=public
+          git restore .npmrc
+          echo "Pre-release $BUILD_VERSION published to NPM."
+
+          # Publish to GHP
+          echo 'registry=https://npm.pkg.github.com' >> .npmrc
+          echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' >> .npmrc
+          npm publish --tag=next --access=public
+          git restore .npmrc
+          echo "Pre-release $BUILD_VERSION published to GHP."
+
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add README.md package.json package-lock.json
+          git status
+          git commit -m":package: [skip ci] Pre-release \`$BUILD_VERSION\` by :robot:
+
+          Co-authored-by: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          "
+          git log -n 2
+          echo "Done." && exit 0
+      - name: Push Version Update
+        uses: ad-m/github-push-action@master
+        with:
+          branch: master
+          github_token: ${{ secrets.GHA_MAPBOXGLCIRCLE_GITHUB_TOKEN }}
