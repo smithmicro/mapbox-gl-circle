@@ -12,6 +12,7 @@ jobs:
       packages: write
       contents: write
     steps:
+#      - uses: hmarr/debug-action@v2
       - uses: actions/checkout@v3
         with:
           persist-credentials: false

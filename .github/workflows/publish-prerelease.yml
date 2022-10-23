@@ -11,16 +11,17 @@ on:
 jobs:
   publish-prerelease:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && contains(github.event.repository.url, 'smithmicro/mapbox-gl-circle') }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == 'smithmicro/mapbox-gl-circle' }}
     permissions:
       packages: write
       contents: write
     steps:
+#      - uses: hmarr/debug-action@v2
       - uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
-          ref: issue-93-gh-actions
+          ref: master
       - uses: actions/setup-node@v3
         with:
           node-version: 16
