@@ -42,7 +42,7 @@ for (let styleOption of ['basic', 'streets', 'bright', 'light', 'dark', 'satelli
 }
 
 // noinspection SpellCheckingInspection
-mapboxgl.accessToken = 'pk.eyJ1IjoicnNiYXVtYW5uIiwiYSI6IjdiOWEzZGIyMGNkOGY3NWQ4ZTBhN2Y5ZGU2Mzg2NDY2In0.jycgv7qwF8MMIWt4cT0RaQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoibWJsb21kYWhsLXNtc2kiLCJhIjoiY2w5ODVoYmtsMDk5NDN5cnE1bzN5Ym1nYiJ9.-mVDprrCsLXGRt7qyqFkWg';
 
 const center = {lat: 39.984, lng: -75.343};
 const map = new mapboxgl.Map({
